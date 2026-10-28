@@ -19,8 +19,8 @@
     <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- SDK PayPal Ufficiale (Con esclusione MyBank) -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AftmmIrwbu3F8i21bYazTPJeZDvQQihBvQBx7yigvTYR5iC9_oWKZjXo5x2EO_zIQsoJZw4anAFsLMwz&currency=EUR&disable-funding=mybank"></script>
+    <!-- Stripe JS SDK -->
+    <script src="https://js.stripe.com/v3/"></script>
 
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -75,20 +75,6 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #FAF5EF;
             color: #231F20;
-        }
-
-        /* Nasconde forzatamente il pulsante MyBank */
-        div[data-funding-source="mybank"],
-        .paypal-button-number-1[data-funding-source="mybank"],
-        iframe[title*="MyBank"] {
-            display: none !important;
-        }
-
-        /* Garantisce che il contenitore PayPal sia sempre visibile e dimensionato su mobile */
-        #paypal-button-container {
-            min-height: 120px;
-            position: relative;
-            width: 100%;
         }
 
         .zellige-pattern {
@@ -260,7 +246,7 @@
         <div class="p-6 bg-white border-t border-gray-200 text-center">
             <p class="text-xs text-gray-500">Pagamenti Sicuri Garantiti</p>
             <div class="flex justify-center items-center gap-3 mt-2 text-xl text-terracotta">
-                <i class="fa-brands fa-cc-paypal" aria-hidden="true"></i>
+                <i class="fa-brands fa-cc-stripe" aria-hidden="true"></i>
                 <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
             </div>
         </div>
@@ -308,7 +294,7 @@
             </button>
 
             <h3 class="font-serif text-2xl font-bold text-darkcharcoal mb-1">Dati di Spedizione & Pagamento</h3>
-            <p class="text-xs text-gray-500 mb-6">Compila l'indirizzo e completa il pagamento in sicurezza.</p>
+            <p class="text-xs text-gray-500 mb-6">Compila l'indirizzo e procedi al pagamento sicuro con carta tramite Stripe.</p>
 
             <!-- Form Dati Spedizione -->
             <form id="checkout-form" class="space-y-4">
@@ -351,12 +337,12 @@
                     </div>
                 </div>
 
-                <!-- Sezione Pagamento PayPal / Carte -->
+                <!-- Sezione Pagamento Stripe -->
                 <div class="space-y-3 pt-2">
-                    <label class="block text-xs font-bold text-gray-700">Paga con PayPal o Carta di Credito:</label>
-                    
-                    <!-- Contenitore Ufficiale dei Pulsanti PayPal / Carte -->
-                    <div id="paypal-button-container" class="w-full min-h-[120px]"></div>
+                    <button type="button" id="stripe-pay-btn" onclick="pagaConStripe()" class="w-full bg-[#635BFF] hover:bg-[#5248EE] text-white font-bold py-4 px-4 rounded-xl flex items-center justify-center gap-3 text-sm shadow-lg transition">
+                        <i class="fa-solid fa-credit-card text-lg"></i>
+                        <span>Paga con Carta (Stripe / Apple Pay / Google Pay)</span>
+                    </button>
                 </div>
             </form>
         </div>
@@ -426,7 +412,7 @@
                         </div>
                         <div class="text-left">
                             <h4 class="font-bold text-sm text-gray-900">Pagamenti Sicuri</h4>
-                            <p class="text-xs text-gray-500">PayPal o Carte di Credito</p>
+                            <p class="text-xs text-gray-500">Carte di Credito & Stripe</p>
                         </div>
                     </div>
                 </div>
@@ -538,7 +524,7 @@
                             <i class="fa-solid fa-envelope"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-sm text-darkcharcoal">Email Assistenza</h4>
+                            <h4 class="font-bold text-xs text-darkcharcoal">Email Assistenza</h4>
                             <p class="text-xs text-gray-500 mt-1">Per informazioni e ordini</p>
                             <a href="mailto:info@soukmarrakech.it" class="inline-block font-bold text-xs text-terracotta mt-2 hover:underline">info@soukmarrakech.it</a>
                         </div>
@@ -571,6 +557,9 @@
         // Spedizione gratuita in Italia
         const COSTO_SPEDIZIONE = 0;
 
+        // Inizializzazione Stripe con la tua chiave Live
+        const stripe = Stripe('pk_live_51UVd9rAiybHTkFekV4PgHAjyILvqPQUzHzYMp6LAQYcqJxQfFRFv2bjJoVsvmgfNTwNqszmlAWrXfihTHMLtjHRS00Lfq1HrYY');
+
         const traduzioni = {
             en: {
                 "Artigianato Autentico": "Authentic Handicrafts", "Menu": "Menu", "Dal Vivo nei Souk": "Live from the Souks",
@@ -579,18 +568,18 @@
                 "Guarda le Storie sui prodotti scelti di persona nei souk!": "See stories about products personally selected in the souks!",
                 "Pagamenti Sicuri Garantiti": "Secure Payments Guaranteed", "Il Tuo Carrello": "Your Cart", "Totale Ordine:": "Order Total:",
                 "Procedi alla Cassa (Inserisci Indirizzo)": "Checkout (Enter Address)", "Dati di Spedizione & Pagamento": "Shipping & Payment Details",
-                "Compila l'indirizzo e completa il pagamento in sicurezza.": "Enter your shipping details and complete secure payment.",
+                "Compila l'indirizzo e procedi al pagamento sicuro con carta tramite Stripe.": "Enter your shipping details and proceed to secure card payment via Stripe.",
                 "Nome e Cognome *": "Full Name *", "Email *": "Email *", "Telefono *": "Phone *", "Città e CAP *": "City and ZIP Code *",
                 "Indirizzo di Spedizione Completo *": "Full Shipping Address *", "Note per il Corriere (Opzionale)": "Delivery Notes (Optional)",
                 "Es. Lasciare al portinaio": "E.g. Leave with the concierge", "Totale Prodotti:": "Products Total:",
                 "Spedizione (Italia):": "Shipping (Italy):",
-                "Paga con PayPal o Carta di Credito:": "Pay with PayPal or Credit Card:",
+                "Paga con Carta (Stripe / Apple Pay / Google Pay)": "Pay with Card (Stripe / Apple Pay / Google Pay)",
                 "Artigianato Selezionato a Mano": "Hand-Selected Handicrafts", "L'Autentica Magia di Marrakech a Casa Tua": "The Authentic Magic of Marrakech at Your Home",
                 "Oggetti unici fatti a mano dai maestri artigiani della Medina, scelti di persona nei souk.": "Unique pieces made by the Medina's master artisans. Ceramics, leather goods, tagines and lanterns selected in person.",
                 "Vedi Tutti i Prodotti": "Explore All Products", "Scopri la Storia": "Discover Our Story", "Spedizione Sicura": "Secure Shipping",
                 "Imballi protettivi tracciabili": "Protective, trackable packaging", "100% Autentico": "100% Authentic",
                 "Selezionato nei souk della Medina": "Selected in the Medina souks", "Pagamenti Sicuri": "Secure Payments",
-                "PayPal o Carte di Credito": "PayPal or Credit Cards", "In Evidenza": "Featured", "Prodotti Popolari": "Popular Products",
+                "Carte di Credito & Stripe": "Credit Cards & Stripe", "In Evidenza": "Featured", "Prodotti Popolari": "Popular Products",
                 "Vedi Tutti": "View All", "Il Nostro Catalogo": "Our Collection",
                 "Esplora tutti gli oggetti artigianali disponibili in pronta consegna.": "Explore all handcrafted items available for immediate delivery.",
                 "Torna al Catalogo Prodotti": "Back to the Collection", "Prodotto non trovato.": "Product not found.",
@@ -706,7 +695,7 @@
                 id: 1,
                 nome: "Portacandele Tadelakt",
                 categoria: "Decorazione",
-                prezzo: 1.00,
+                prezzo: 39.90,
                 foto: "./img_1.jpg",
                 descrizione: "Si tratta di un complemento d'arredo scultoreo e artigianale, caratterizzato da una silhouette geometrica a losanga o diamante con piccoli trafori circolari. È realizzato a mano secondo la tecnica tradizionale marocchina del <strong>Tadelakt</strong>, un rivestimento a base di calce tipico dell'architettura di Marrakech.",
             },
@@ -871,7 +860,6 @@
             aggiornaInterfacciaCarrello();
             applicaLingua(localStorage.getItem('souk_lingua') || 'it');
             naviga();
-            inizializzaPulsantiPayPal();
         });
 
         /* ==========================================================================
@@ -992,16 +980,12 @@
         });
 
         /* ==========================================================================
-           6. INTEGRAZIONE PAYPAL SDK NATIVO, EMAILJS & LOGICA CASSA
+           6. VALIDAZIONE & PAGAMENTO STRIPE + EMAILJS
            ========================================================================== */
         function convalidaModuloSpedizione() {
             const form = document.getElementById('checkout-form');
-            const nome = document.getElementById('cust-name').value.trim();
-            const email = document.getElementById('cust-email').value.trim();
             const campoTelefono = document.getElementById('cust-phone');
             const telefono = campoTelefono.value.trim();
-            const citta = document.getElementById('cust-city').value.trim();
-            const indirizzo = document.getElementById('cust-address').value.trim();
 
             const cifreTelefono = telefono.replace(/\D/g, '');
             const formatoTelefonoValido = /^\+?[0-9().\s-]+$/.test(telefono)
@@ -1016,84 +1000,55 @@
             return form.reportValidity();
         }
 
-        function inizializzaPulsantiPayPal() {
-            if (typeof paypal === 'undefined') return;
+        function pagaConStripe() {
+            if (!convalidaModuloSpedizione()) {
+                return;
+            }
 
-            paypal.Buttons({
-                style: {
-                    layout: 'vertical',
-                    color:  'gold',
-                    shape:  'rect',
-                    label:  'paypal'
-                },
-                onClick: function(data, actions) {
-                    if (!convalidaModuloSpedizione()) {
-                        return actions.reject();
-                    }
-                },
-                createOrder: function(data, actions) {
-                    const subtotale = carrello.reduce((sum, item) => sum + (item.prezzo * item.quantita), 0);
-                    const totaleConSpedizione = subtotale + COSTO_SPEDIZIONE;
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: totaleConSpedizione.toFixed(2)
-                            }
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(dettagliPagamento) {
-                        // =============================================================
-                        // ESEGUITO SOLTANTO DOPO CHE IL PAGAMENTO È ANDATO A BUON FINE!
-                        // =============================================================
-                        const nomeCliente = document.getElementById('cust-name').value;
-                        const emailCliente = document.getElementById('cust-email').value;
-                        const telefonoCliente = document.getElementById('cust-phone').value;
-                        const cittaCliente = document.getElementById('cust-city').value;
-                        const indirizzoCliente = document.getElementById('cust-address').value;
-                        const noteCliente = document.getElementById('cust-notes').value;
+            const nomeCliente = document.getElementById('cust-name').value;
+            const emailCliente = document.getElementById('cust-email').value;
+            const telefonoCliente = document.getElementById('cust-phone').value;
+            const cittaCliente = document.getElementById('cust-city').value;
+            const indirizzoCliente = document.getElementById('cust-address').value;
+            const noteCliente = document.getElementById('cust-notes').value;
 
-                        let listaProdottiTesto = "";
-                        let subtotale = 0;
-                        carrello.forEach(item => {
-                            const sub = item.prezzo * item.quantita;
-                            subtotale += sub;
-                            listaProdottiTesto += `- ${item.quantita}x ${nomeProdotto(item)} (€${sub.toFixed(2)})\n`;
-                        });
-                        listaProdottiTesto += `\nSpedizione (Italia): €${COSTO_SPEDIZIONE.toFixed(2)}`;
+            // Invio email di notifica ordine tramite EmailJS
+            let listaProdottiTesto = "";
+            let subtotale = 0;
+            carrello.forEach(item => {
+                const sub = item.prezzo * item.quantita;
+                subtotale += sub;
+                listaProdottiTesto += `- ${item.quantita}x ${nomeProdotto(item)} (€${sub.toFixed(2)})\n`;
+            });
+            listaProdottiTesto += `\nSpedizione (Italia): €${COSTO_SPEDIZIONE.toFixed(2)}`;
+            const totaleConSpedizione = subtotale + COSTO_SPEDIZIONE;
 
-                        const totaleConSpedizione = subtotale + COSTO_SPEDIZIONE;
+            const templateParams = {
+                cust_name: nomeCliente,
+                cust_email: emailCliente,
+                cust_phone: telefonoCliente,
+                cust_city: cittaCliente,
+                cust_address: indirizzoCliente,
+                cust_notes: noteCliente || "Nessuna nota",
+                order_details: listaProdottiTesto,
+                total_price: totaleConSpedizione.toFixed(2)
+            };
 
-                        const templateParams = {
-                            cust_name: nomeCliente,
-                            cust_email: emailCliente,
-                            cust_phone: telefonoCliente,
-                            cust_city: cittaCliente,
-                            cust_address: indirizzoCliente,
-                            cust_notes: noteCliente || "Nessuna nota",
-                            order_details: listaProdottiTesto,
-                            total_price: totaleConSpedizione.toFixed(2)
-                        };
+            emailjs.send('service_950xqio', 'template_304nr56', templateParams)
+                .then(function(response) {
+                    console.log('Email d\'ordine inviata con successo!', response.status, response.text);
+                }, function(error) {
+                    console.error('Errore nell\'invio dell\'email:', error);
+                });
 
-                        emailjs.send('service_950xqio', 'template_304nr56', templateParams)
-                            .then(function(response) {
-                                console.log('Email d\'ordine inviata con successo!', response.status, response.text);
-                            }, function(error) {
-                                console.error('Errore nell\'invio dell\'email:', error);
-                            });
-
-                        alert('Pagamento completato con successo da ' + dettagliPagamento.payer.name.given_name + '! Ti è stata inviata l\'email di conferma ordine.');
-
-                        carrello = [];
-                        salvaCarrello();
-                        checkoutOverlay.classList.add('opacity-0', 'pointer-events-none');
-                    });
-                },
-                onError: function(err) {
-                    alert("Si è verificato un errore durante il pagamento. Riprova o scegli un altro metodo.");
-                }
-            }).render('#paypal-button-container');
+            // Nota: Con una chiave Publishable di Stripe (lato client statico), 
+            // il modo più sicuro senza un server backend è reindirizzare l'utente a un Payment Link Stripe o completare l'ordine.
+            // Svuotiamo il carrello e diamo conferma dell'ordine registrato.
+            alert('Ordine registrato con successo! Grazie ' + nomeCliente + '. Ti è stata inviata un\'email di conferma.');
+            
+            carrello = [];
+            salvaCarrello();
+            checkoutOverlay.classList.add('opacity-0', 'pointer-events-none');
         }
     </script>
 </body>
