@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Souk Marrakech - Artigianato Autentico Marocchino</title>
+    <meta name="description" content="Candelieri, vasi e oggetti d'arredo in tadelakt e ceramica, fatti a mano dagli artigiani della Medina di Marrakech e spediti in tutta Italia.">
+    <meta name="theme-color" content="#C85A32">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Souk Marrakech - Artigianato Autentico Marocchino">
+    <meta property="og:description" content="Oggetti unici fatti a mano dai maestri artigiani della Medina, scelti di persona nei souk.">
+    <meta property="og:image" content="img_homme.jpeg">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23C85A32'/%3E%3Cpath d='M50 14 60 39 86 50 60 61 50 86 40 61 14 50 40 39Z' fill='%23D4AF37' stroke='%23FAF5EF' stroke-width='5'/%3E%3C/svg%3E">
+    
+    <!-- Tailwind CSS per classi utility -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- SDK PayPal Ufficiale (Con esclusione MyBank) -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AftmmIrwbu3F8i21bYazTPJeZDvQQihBvQBx7yigvTYR5iC9_oWKZjXo5x2EO_zIQsoJZw4anAFsLMwz&currency=EUR&disable-funding=mybank"></script>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("3un0IAjUmspNGcRPA");
+        })();
+    </script>
+
+    <script>
+        window.mostraFallbackImmagine = function(immagine) {
+            const fallback = document.createElement('div');
+            fallback.className = `${immagine.className} placeholder-img image-fallback`;
+            fallback.setAttribute('role', 'img');
+            fallback.setAttribute('aria-label', immagine.alt || 'Immagine non disponibile');
+            fallback.textContent = immagine.alt || 'Immagine non disponibile';
+            immagine.replaceWith(fallback);
+        };
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        terracotta: {
+                            DEFAULT: '#C85A32',
+                            dark: '#9E3F1D',
+                            light: '#F4ECE8'
+                        },
+                        majorelle: {
+                            DEFAULT: '#0F4C81',
+                            dark: '#0A3459',
+                            light: '#E6EFF7'
+                        },
+                        saffron: {
+                            DEFAULT: '#D4AF37',
+                            dark: '#B38F22'
+                        },
+                        sand: '#FAF5EF',
+                        darkcharcoal: '#231F20'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF5EF;
+            color: #231F20;
+        }
+
+        /* Nasconde forzatamente il pulsante MyBank */
+        div[data-funding-source="mybank"],
+        .paypal-button-number-1[data-funding-source="mybank"],
+        iframe[title*="MyBank"] {
+            display: none !important;
+        }
+
+        .zellige-pattern {
+            background-color: #FAF5EF;
+            background-image: radial-gradient(#C85A32 0.75px, transparent 0.75px), radial-gradient(#0F4C81 0.75px, #FAF5EF 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+
+        body.sfondo-marocchino-attivo {
+            background-color: #F6E7D6;
+            background-image: radial-gradient(rgba(200,90,50,.18) 1.2px, transparent 1.6px);
+            background-size: 26px 26px;
+        }
+        .catalogo-background,
+        body.catalogo-attivo {
+            background-color: #0F4C81;
+            background-image:
+                radial-gradient(rgba(212,175,55,.38) 1.3px, transparent 1.8px),
+                linear-gradient(160deg, #0F4C81 0%, #0A3459 100%);
+            background-size: 28px 28px, auto;
+        }
+
+        body.catalogo-attivo footer,
+        body.home-attivo footer {
+            margin-top: 0;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(200, 90, 50, 0.08);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-shadow:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 30px -5px rgba(200, 90, 50, 0.18);
+        }
+
+        /* Gestione Transizioni Viste */
+        .page-view {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .page-view.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* ---- Miglioramenti ---- */
+        .hero-bg {
+            background:
+                radial-gradient(circle at 12% 18%, rgba(212,175,55,.28), transparent 42%),
+                radial-gradient(rgba(255,255,255,.10) 1.2px, transparent 1.6px),
+                linear-gradient(135deg, #9E3F1D 0%, #C85A32 55%, #DB7A44 100%);
+            background-size: auto, 28px 28px, auto;
+        }
+        .text-xs { font-size: .875rem !important; line-height: 1.35rem !important; }
+        .text-\[11px\] { font-size: .8rem !important; }
+        .text-\[10px\] { font-size: .72rem !important; }
+        main .text-gray-500, aside .text-gray-500, #checkout-modal-overlay .text-gray-500 { color: #5b524d !important; }
+        main .text-gray-600, aside .text-gray-600 { color: #4a423e !important; }
+        .catalogo-background h1, .catalogo-background h2 { color: #fff !important; }
+        #view-prodotti .text-center p { color: #E3EDF7 !important; }
+        
+        .placeholder-img {
+            display: flex; align-items: center; justify-content: center;
+            background: repeating-linear-gradient(45deg, #F4ECE8, #F4ECE8 12px, #EFE2D8 12px, #EFE2D8 24px);
+            border: 2px dashed rgba(200,90,50,.45);
+            color: #C85A32; font-size: 2rem; border-radius: 1rem;
+        }
+        .image-fallback { font-size: .875rem; line-height: 1.4; padding: 1rem; text-align: center; }
+        .page-view.active { animation: fadeIn .45s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        :focus-visible { outline: 3px solid #0F4C81; outline-offset: 2px; }
+        @media (prefers-reduced-motion: reduce) { .page-view.active { animation: none; } html { scroll-behavior: auto !important; } }
+    </style>
+</head>
+<body class="zellige-pattern flex flex-col min-h-screen relative">
+
+    <!-- ================= NAVBAR SUPERIORE ================= -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-terracotta/20 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Lato Sinistro: Menu Hamburger -->
+            <div class="flex items-center gap-4">
+                <button id="open-drawer-btn" aria-label="Apri Menu" class="lg:hidden p-2.5 text-terracotta hover:bg-terracotta-light rounded-xl transition flex items-center gap-2 group">
+                    <i class="fa-solid fa-bars-staggered text-2xl group-hover:scale-110 transition-transform"></i>
+                    <span class="hidden sm:inline font-medium text-xs tracking-wider uppercase text-terracotta-dark">Menu</span>
+                </button>
+                <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-darkcharcoal" aria-label="Principale">
+                    <a href="#prodotti" class="px-4 py-2 rounded-xl hover:bg-terracotta-light hover:text-terracotta transition">Prodotti</a>
+                    <a href="#chisiamo" class="px-4 py-2 rounded-xl hover:bg-terracotta-light hover:text-terracotta transition">Chi siamo</a>
+                    <a href="#contatti" class="px-4 py-2 rounded-xl hover:bg-terracotta-light hover:text-terracotta transition">Contatti</a>
+                </nav>
+            </div>
+
+            <!-- Centro: Logo e Titolo Brand -->
+            <a href="#home" class="flex flex-col items-center group">
+                <span class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-terracotta group-hover:text-majorelle transition">
+                    SOUK MARRAKECH
+                </span>
+                <span class="text-[10px] tracking-[0.2em] text-saffron-dark uppercase font-semibold">Artigianato Autentico</span>
+            </a>
+
+            <!-- Lato Destro: Carrello & Instagram -->
+            <div class="flex items-center gap-3">
+                <label for="language-select" class="sr-only">Lingua</label>
+                <select id="language-select" aria-label="Lingua" class="max-w-[92px] sm:max-w-none bg-sand border border-terracotta/20 rounded-lg px-2 py-2 text-xs font-semibold text-darkcharcoal focus:outline-none focus:ring-2 focus:ring-terracotta">
+                    <option value="it">Italiano</option>
+                    <option value="en">English</option>
+                </select>
+                <a href="https://www.instagram.com/alesiamarrakechescape" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center gap-2 text-xs font-semibold text-majorelle bg-majorelle-light px-3 py-2 rounded-full hover:bg-majorelle hover:text-white transition">
+                    <i class="fa-brands fa-instagram text-base"></i>
+                    <span>Dal Vivo nei Souk</span>
+                </a>
+                
+                <!-- Pulsante Carrello con Badge Numerico -->
+                <button id="open-cart-btn" class="relative p-2.5 text-terracotta hover:bg-terracotta-light rounded-xl transition">
+                    <i class="fa-solid fa-bag-shopping text-2xl"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-saffron text-darkcharcoal text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow hidden">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= MENU HAMBURGER DRAWER ================= -->
+    <div id="drawer-overlay" class="fixed inset-0 bg-darkcharcoal/60 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <aside id="drawer-menu" class="fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-sand z-50 -translate-x-full transition-transform duration-300 flex flex-col justify-between shadow-2xl border-r-2 border-saffron">
+        <div>
+            <div class="p-6 bg-terracotta text-white flex items-center justify-between">
+                <div>
+                    <h2 class="font-serif text-xl font-bold">Souk Marrakech</h2>
+                    <p class="text-xs text-white/80">Menu Navigazione</p>
+                </div>
+                <button id="close-drawer-btn" class="p-2 hover:bg-terracotta-dark rounded-full transition text-white">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <nav class="p-6 space-y-3">
+                <a href="#home" class="drawer-nav-item flex items-center gap-4 text-gray-800 font-medium py-3 px-4 rounded-xl hover:bg-terracotta-light hover:text-terracotta transition">
+                    <i class="fa-solid fa-house text-terracotta w-6"></i> Home
+                </a>
+                <a href="#prodotti" class="drawer-nav-item flex items-center gap-4 text-gray-800 font-medium py-3 px-4 rounded-xl hover:bg-terracotta-light hover:text-terracotta transition">
+                    <i class="fa-solid fa-store text-terracotta w-6"></i> Tutti i Prodotti
+                </a>
+                <a href="#chisiamo" class="drawer-nav-item flex items-center gap-4 text-gray-800 font-medium py-3 px-4 rounded-xl hover:bg-terracotta-light hover:text-terracotta transition">
+                    <i class="fa-solid fa-compass text-terracotta w-6"></i> Chi Siamo & Instagram
+                </a>
+                <a href="#contatti" class="drawer-nav-item flex items-center gap-4 text-gray-800 font-medium py-3 px-4 rounded-xl hover:bg-terracotta-light hover:text-terracotta transition">
+                    <i class="fa-solid fa-paper-plane text-terracotta w-6"></i> Contatti & Assistenza
+                </a>
+
+                <div class="pt-6 border-t border-gray-200">
+                    <a href="https://www.instagram.com/alesiamarrakechescape" target="_blank" rel="noopener noreferrer" class="flex flex-col p-4 bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-pink-500/20 rounded-2xl">
+                        <div class="flex items-center gap-3 text-pink-700 font-bold text-sm mb-1">
+                            <i class="fa-brands fa-instagram text-xl"></i>
+                            <span>I Miei Viaggi a Marrakech</span>
+                        </div>
+                        <p class="text-xs text-gray-600">Guarda le Storie sui prodotti scelti di persona nei souk!</p>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="p-6 bg-white border-t border-gray-200 text-center">
+            <p class="text-xs text-gray-500">Pagamenti Sicuri Garantiti</p>
+            <div class="flex justify-center items-center gap-3 mt-2 text-xl text-terracotta">
+                <i class="fa-brands fa-cc-paypal" aria-hidden="true"></i>
+                <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ================= CARRELLO SPESA DRAWER (LATO DESTRO) ================= -->
+    <div id="cart-overlay" class="fixed inset-0 bg-darkcharcoal/60 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-96 max-w-[90vw] bg-white z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between shadow-2xl">
+        <!-- Header Carrello -->
+        <div class="p-6 bg-sand border-b border-gray-200 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-bag-shopping text-terracotta text-xl"></i>
+                <h3 class="font-serif text-lg font-bold text-darkcharcoal">Il Tuo Carrello</h3>
+            </div>
+            <button id="close-cart-btn" class="p-2 hover:bg-gray-200 rounded-full transition text-gray-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Lista Articoli Carrello -->
+        <div id="cart-items-container" class="p-6 overflow-y-auto flex-grow space-y-4">
+            <!-- Gli elementi del carrello appariranno qui tramite JS -->
+        </div>
+
+        <!-- Footer Carrello con Totale & Pulsante Procedi alla Cassa -->
+        <div class="p-6 bg-sand border-t border-gray-200 space-y-4">
+            <div class="flex justify-between items-center text-base font-bold text-darkcharcoal">
+                <span>Totale Ordine:</span>
+                <span id="cart-total-price" class="text-xl text-terracotta">€0.00</span>
+            </div>
+
+            <button id="open-checkout-btn" class="w-full bg-terracotta hover:bg-terracotta-dark text-white font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow transition">
+                <i class="fa-solid fa-truck-fast"></i>
+                <span>Procedi alla Cassa (Inserisci Indirizzo)</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ================= MODALE DI CHECKOUT & SPEDIZIONE ================= -->
+    <div id="checkout-modal-overlay" class="fixed inset-0 bg-darkcharcoal/70 z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl border border-saffron relative">
+            <button id="close-checkout-btn" class="absolute top-5 right-5 text-gray-400 hover:text-darkcharcoal text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="font-serif text-2xl font-bold text-darkcharcoal mb-1">Dati di Spedizione & Pagamento</h3>
+            <p class="text-xs text-gray-500 mb-6">Compila l'indirizzo e completa il pagamento in sicurezza.</p>
+
+            <!-- Form Dati Spedizione -->
+            <form id="checkout-form" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Nome e Cognome *</label>
+                        <input type="text" id="cust-name" required placeholder="Mario Rossi" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:border-terracotta focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Email *</label>
+                        <input type="email" id="cust-email" autocomplete="email" required placeholder="mario.rossi@email.com" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:border-terracotta focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Telefono *</label>
+                        <input type="tel" id="cust-phone" autocomplete="tel" inputmode="tel" required placeholder="+39 333 1234567" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:border-terracotta focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Città e CAP *</label>
+                        <input type="text" id="cust-city" required placeholder="Milano 20100" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:border-terracotta focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Indirizzo di Spedizione Completo *</label>
+                    <input type="text" id="cust-address" required placeholder="Via Roma 12, Piano 2, Citofono Rossi" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:border-terracotta focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Note per il Corriere (Opzionale)</label>
+                    <textarea id="cust-notes" rows="2" placeholder="Es. Lasciare al portinaio" class="w-full border border-gray-300 rounded-xl p-3 text-sm focus:border-terracotta focus:outline-none"></textarea>
+                </div>
+
+                <!-- Riepilogo Articoli nella Cassa -->
+                <div class="p-4 bg-sand rounded-2xl border border-saffron/30 space-y-2">
+                    <div id="modal-total-price" class="flex justify-between font-bold text-sm text-darkcharcoal">
+                        <!-- Iniettato via JS -->
+                    </div>
+                </div>
+
+                <!-- Sezione Pagamento PayPal / Carte (Senza MyBank) -->
+                <div class="space-y-3 pt-2">
+                    <label class="block text-xs font-bold text-gray-700">Paga con PayPal o Carta di Credito:</label>
+                    
+                    <!-- Contenitore Ufficiale dei Pulsanti PayPal / Carte -->
+                    <div id="paypal-button-container" class="w-full min-h-[50px]"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= CONTENUTO PAGINE (ROUTING SPA) ================= -->
+    <main class="flex-grow">
+
+        <!-- 1. HOME PAGE VIEW (#home) -->
+        <section id="view-home" class="page-view active">
+            <!-- Hero Banner -->
+            <div class="relative hero-bg text-white overflow-hidden py-16 lg:py-24">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="text-center lg:text-left space-y-6">
+                            <span class="inline-block bg-saffron/20 border border-saffron/40 px-4 py-1.5 rounded-full text-xs font-semibold text-saffron uppercase tracking-widest">
+                                Artigianato Selezionato a Mano
+                            </span>
+                            <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                                L'Autentica Magia di Marrakech a Casa Tua
+                            </h1>
+                            <p class="text-lg text-white/90 max-w-xl mx-auto lg:mx-0 font-light">
+                                Oggetti unici fatti a mano dai maestri artigiani della Medina, scelti di persona nei souk.
+                            </p>
+                            <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                <a href="#prodotti" class="bg-saffron hover:bg-saffron-dark text-darkcharcoal font-bold px-8 py-4 rounded-xl shadow-lg transition text-center uppercase text-sm tracking-wider">
+                                    Vedi Tutti i Prodotti
+                                </a>
+                                <a href="#chisiamo" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-4 rounded-xl border border-white/30 transition text-center text-sm">
+                                    Scopri la Storia
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden border-4 border-saffron/40 shadow-2xl">
+                                <img src="./img_homme.jpeg" alt="Souk Marrakech" fetchpriority="high" onerror="mostraFallbackImmagine(this)" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vantaggi Rapidi -->
+            <div class="bg-white py-8 border-b border-gray-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="flex items-center justify-center gap-4 p-4">
+                        <div class="w-12 h-12 rounded-full bg-terracotta-light text-terracotta flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-sm text-gray-900">Spedizione Sicura</h4>
+                            <p class="text-xs text-gray-500">Imballi protettivi tracciabili</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center gap-4 p-4">
+                        <div class="w-12 h-12 rounded-full bg-majorelle-light text-majorelle flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-sm text-gray-900">100% Autentico</h4>
+                            <p class="text-xs text-gray-500">Selezionato nei souk della Medina</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center gap-4 p-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-50 text-saffron-dark flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-sm text-gray-900">Pagamenti Sicuri</h4>
+                            <p class="text-xs text-gray-500">PayPal o Carte di Credito</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vetrina Anteprima Prodotti -->
+            <div class="catalogo-background py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-end mb-10">
+                        <div>
+                            <span class="inline-flex items-center bg-sand text-darkcharcoal font-bold text-xs uppercase tracking-widest px-4 py-2 rounded-xl shadow-sm">In Evidenza</span>
+                            <h2 class="font-serif text-3xl font-bold text-darkcharcoal mt-1">Prodotti Popolari</h2>
+                        </div>
+                        <a href="#prodotti" class="bg-sand text-darkcharcoal font-bold text-sm hover:bg-white transition px-4 py-2.5 rounded-xl shadow-sm flex items-center gap-2">
+                            Vedi Tutti <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div id="home-featured-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Iniettati via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CATALOGO COMPLETO PRODOTTI (#prodotti) -->
+        <section id="view-prodotti" class="page-view catalogo-background py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <h1 class="font-serif text-3xl sm:text-4xl font-bold text-darkcharcoal">Il Nostro Catalogo</h1>
+                    <p class="text-gray-600 text-sm mt-2">Esplora tutti gli oggetti artigianali disponibili in pronta consegna.</p>
+                    <div class="w-20 h-1 bg-saffron mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Griglia Tutti Prodotti -->
+                <div id="full-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Iniettati via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PAGINA DETTAGLIO SINGOLO PRODOTTO (#prodotto?id=X) -->
+        <section id="view-prodotto-dettaglio" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <a href="#prodotti" class="inline-flex items-center gap-2 bg-sand text-darkcharcoal font-bold text-sm hover:bg-white transition px-4 py-2.5 rounded-xl shadow-sm mb-8">
+                <i class="fa-solid fa-arrow-left"></i> Torna al Catalogo Prodotti
+            </a>
+
+            <div id="single-product-container" class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-gray-100">
+                <!-- Contenuto Prodotto Singolo Iniettato via JS -->
+            </div>
+        </section>
+
+        <!-- 4. PAGINA CHI SIAMO (#chisiamo) -->
+        <section id="view-chisiamo" class="page-view py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="./img_home.png" alt="Medina e paesaggi del Marocco" onerror="mostraFallbackImmagine(this)" class="rounded-3xl shadow-xl w-full h-96 object-cover">
+                    <div class="absolute -bottom-6 -right-2 sm:right-6 bg-sand border border-saffron/40 p-5 rounded-2xl shadow-lg max-w-xs">
+                        <div class="flex items-center gap-3 text-pink-600 font-bold text-sm">
+                            <i class="fa-brands fa-instagram text-2xl"></i>
+                            <span>Esperienze & Viaggi</span>
+                        </div>
+                        <p class="text-xs text-gray-600 mt-1">Segui la pagina Instagram per vedere dal vivo la selezione di ogni oggetto nei souk!</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <span class="text-darkcharcoal font-bold text-xs uppercase tracking-widest">La Nostra Storia</span>
+                    <h1 class="font-serif text-3xl sm:text-4xl font-bold text-darkcharcoal">Passione per l'Artigianato Autentico</h1>
+                    <p class="text-darkcharcoal leading-relaxed text-sm">
+                        Questo e-commerce nasce dall'amore per la cultura e la maestria artigianale di <strong>Marrakech</strong>. Ogni prodotto a catalogo viene scelto personalmente esplorando i vicoli e i souk storici della Medina.
+                    </p>
+                    <p class="text-darkcharcoal leading-relaxed text-sm">
+                        Non lavoriamo con fornitori industriali anonimi: conosciamo gli artigiani che intrecciano le lanterne, lavorano la pelle e dipingono la ceramica a mano.
+                    </p>
+
+                    <div class="pt-4">
+                        <a href="https://www.instagram.com/alesiamarrakechescape" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm px-6 py-3.5 rounded-xl shadow hover:opacity-90 transition">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                            <span>Guarda i Retroscena su Instagram</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. PAGINA CONTATTI (#contatti) -->
+        <section id="view-contatti" class="page-view py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 text-center space-y-6">
+                <span class="text-terracotta font-bold text-xs uppercase tracking-widest">Siamo qui per te</span>
+                <h1 class="font-serif text-3xl font-bold text-darkcharcoal">Hai Domande o Richieste Particolari?</h1>
+                <p class="text-gray-600 text-sm max-w-md mx-auto">
+                    Vuoi un prodotto su misura o desideri informazioni sui tempi di spedizione? Scrivici direttamente.
+                </p>
+
+                <div class="grid sm:grid-cols-2 gap-6 pt-6 text-left">
+                    <div class="p-6 bg-sand rounded-2xl border border-terracotta/20 flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-darkcharcoal">WhatsApp Diretto</h4>
+                            <p class="text-xs text-gray-500 mt-1">Rispondiamo in tempi rapidi</p>
+                            <a href="https://wa.me/393391290800" target="_blank" rel="noopener noreferrer" class="inline-block font-bold text-xs text-emerald-600 mt-2 hover:underline">+39 339 129 0800</a>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-sand rounded-2xl border border-terracotta/20 flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-terracotta-light text-terracotta flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-darkcharcoal">Email Assistenza</h4>
+                            <p class="text-xs text-gray-500 mt-1">Per informazioni e ordini</p>
+                            <a href="mailto:info@soukmarrakech.it" class="inline-block font-bold text-xs text-terracotta mt-2 hover:underline">info@soukmarrakech.it</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-darkcharcoal text-white pt-12 pb-8 border-t-4 border-saffron mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <h3 class="font-serif text-2xl font-bold text-terracotta-light">SOUK MARRAKECH</h3>
+            <p class="text-gray-400 text-xs max-w-md mx-auto">
+                Artigianato marocchino selezionato sul posto e spedito direttamente a casa tua in tutta Italia.
+            </p>
+            <div class="flex justify-center gap-6 text-gray-400 text-xl">
+                <a href="https://www.instagram.com/alesiamarrakechescape" target="_blank" rel="noopener noreferrer" class="hover:text-saffron transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#contatti" class="hover:text-saffron transition"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+            <div class="pt-6 border-t border-gray-800 text-xs text-gray-400">
+                &copy; 2026 Souk Marrakech. Tutti i diritti riservati.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= LOGICA JAVASCRIPT ================= -->
+    <script>
+        // Spedizione gratuita in Italia
+        const COSTO_SPEDIZIONE = 0;
+
+        const traduzioni = {
+            en: {
+                "Artigianato Autentico": "Authentic Handicrafts", "Menu": "Menu", "Dal Vivo nei Souk": "Live from the Souks",
+                "Menu Navigazione": "Navigation Menu", "Tutti i Prodotti": "All Products", "Chi Siamo & Instagram": "About Us & Instagram",
+                "Contatti & Assistenza": "Contact & Support", "I Miei Viaggi a Marrakech": "My Travels in Marrakech",
+                "Guarda le Storie sui prodotti scelti di persona nei souk!": "See stories about products personally selected in the souks!",
+                "Pagamenti Sicuri Garantiti": "Secure Payments Guaranteed", "Il Tuo Carrello": "Your Cart", "Totale Ordine:": "Order Total:",
+                "Procedi alla Cassa (Inserisci Indirizzo)": "Checkout (Enter Address)", "Dati di Spedizione & Pagamento": "Shipping & Payment Details",
+                "Compila l'indirizzo e completa il pagamento in sicurezza.": "Enter your shipping details and complete secure payment.",
+                "Nome e Cognome *": "Full Name *", "Email *": "Email *", "Telefono *": "Phone *", "Città e CAP *": "City and ZIP Code *",
+                "Indirizzo di Spedizione Completo *": "Full Shipping Address *", "Note per il Corriere (Opzionale)": "Delivery Notes (Optional)",
+                "Es. Lasciare al portinaio": "E.g. Leave with the concierge", "Totale Prodotti:": "Products Total:",
+                "Spedizione (Italia):": "Shipping (Italy):",
+                "Paga con PayPal o Carta di Credito:": "Pay with PayPal or Credit Card:",
+                "Artigianato Selezionato a Mano": "Hand-Selected Handicrafts", "L'Autentica Magia di Marrakech a Casa Tua": "The Authentic Magic of Marrakech at Your Home",
+                "Oggetti unici fatti a mano dai maestri artigiani della Medina, scelti di persona nei souk.": "Unique pieces made by the Medina's master artisans. Ceramics, leather goods, tagines and lanterns selected in person.",
+                "Vedi Tutti i Prodotti": "Explore All Products", "Scopri la Storia": "Discover Our Story", "Spedizione Sicura": "Secure Shipping",
+                "Imballi protettivi tracciabili": "Protective, trackable packaging", "100% Autentico": "100% Authentic",
+                "Selezionato nei souk della Medina": "Selected in the Medina souks", "Pagamenti Sicuri": "Secure Payments",
+                "PayPal o Carte di Credito": "PayPal or Credit Cards", "In Evidenza": "Featured", "Prodotti Popolari": "Popular Products",
+                "Vedi Tutti": "View All", "Il Nostro Catalogo": "Our Collection",
+                "Esplora tutti gli oggetti artigianali disponibili in pronta consegna.": "Explore all handcrafted items available for immediate delivery.",
+                "Torna al Catalogo Prodotti": "Back to the Collection", "Prodotto non trovato.": "Product not found.",
+                "Vedi Dettagli": "View Details", "Aggiungi al carrello": "Add to cart", "Aggiungi al Carrello": "Add to Cart",
+                "Spedizione rapida tracciabile in tutta Italia (gratis)": "Free trackable shipping across Italy",
+                "Esperienze & Viaggi": "Experiences & Travel", "Segui la pagina Instagram per vedere dal vivo la selezione di ogni oggetto nei souk!": "Follow us on Instagram to see each item selected in person in the souks!",
+                "La Nostra Storia": "Our Story", "Passione per l'Artigianato Autentico": "A Passion for Authentic Handicrafts",
+                "Questo e-commerce nasce dall'amore per la cultura e la maestria artigianale di": "This online shop was born from a love of the culture and craftsmanship of",
+                "Non lavoriamo con fornitori industriali anonimi: conosciamo gli artigiani che intrecciano le lanterne, lavorano la pelle e dipingono la ceramica a mano.": "We work directly with the artisans who weave lanterns, craft leather and hand-paint ceramics—not anonymous factories.",
+                "Guarda i Retroscena su Instagram": "See Behind the Scenes on Instagram", "Siamo qui per te": "We're here for you",
+                "Hai Domande o Richieste Particolari?": "Questions or Special Requests?", "Vuoi un prodotto su misura o desideri informazioni sui tempi di spedizione? Scrivici direttamente.": "Looking for a custom item or shipping information? Get in touch.",
+                "WhatsApp Diretto": "Direct WhatsApp", "Rispondiamo in tempi rapidi": "We reply promptly", "Email Assistenza": "Email Support",
+                "Per informazioni e ordini": "For information and orders",
+                "Artigianato marocchino selezionato sul posto e spedito direttamente a casa tua in tutta Italia.": "Moroccan handicrafts selected in person and shipped directly to your home across Italy.",
+                "Tutti i diritti riservati.": "All rights reserved.", "Il tuo carrello è vuoto.": "Your cart is empty!",
+                "Il tuo carrello è vuoto": "Your cart is empty", "Inserisci un numero valido con 8–15 cifre. Puoi usare +, spazi, parentesi e trattini.": "Enter a valid number with 8–15 digits. You may use +, spaces, parentheses and hyphens.",
+                "Per favore, compila tutti i campi obbligatori della spedizione (*)": "Please complete all required shipping fields (*).",
+                "Lingua": "Language", "Apri Menu": "Open Menu", "Apri Carrello": "Open Cart", "© 2026 Souk Marrakech. Tutti i diritti riservati.": "© 2026 Souk Marrakech. All rights reserved.",
+                "Rimuovi prodotto": "Remove item", ". Ogni prodotto a catalogo viene scelto personalmente esplorando i vicoli e i souk storici della Medina.": ". Every item is personally selected in the Medina's historic alleys and souks."
+            }
+        };
+
+        const traduzioniPlaceholder = {
+            "Mario Rossi": { en: "John Smith" },
+            "Milano 20100": { en: "London SW1A 1AA" },
+            "Via Roma 12, Piano 2, Citofono Rossi": { en: "12 High Street, Apt 2" }
+        };
+
+        const traduzioniProdotti = {
+            en: [
+                ["Tadelakt Candle Holder", "Handcrafted sculptural decor with a geometric diamond silhouette and circular cutouts. Made using traditional Moroccan Tadelakt, a lime-based finish typical of Marrakech architecture."],
+                ["Handcrafted Berber Tadelakt Ceramic Candle Holder", "Handcrafted Berber sculptural candle holder made in Morocco with a white Tadelakt finish. A unique decor piece combining ethnic tradition and minimalist geometric design."],
+                ["Sculptural Black Berber Tadelakt Candle Holder", "Exclusive sculptural candle holder, entirely handmade in Morocco. Its pierced geometric silhouette draws inspiration from Berber design."],
+                ["'Circle' Sculptural Glossy Black Ceramic Vase", "Refined glazed ceramic vase with an elegant rounded silhouette and iconic central opening. Its ultra-glossy black finish creates striking reflections."]
+            ]
+        };
+
+        let linguaCorrente = 'it';
+        const testiOriginali = new WeakMap();
+        function traduci(testo) {
+            return (traduzioni[linguaCorrente] && traduzioni[linguaCorrente][testo]) || testo;
+        }
+
+        function nomeProdotto(prodotto) {
+            const indice = prodotto.id - 1;
+            return traduzioniProdotti[linguaCorrente] ? traduzioniProdotti[linguaCorrente][indice][0] : prodotto.nome;
+        }
+
+        function descrizioneProdotto(prodotto) {
+            const indice = prodotto.id - 1;
+            if (linguaCorrente === 'it') return prodotto.descrizione;
+            const descrizione = traduzioniProdotti[linguaCorrente][indice][1];
+            return prodotto.id === 1 && linguaCorrente === 'en'
+                ? descrizione.replace("Tadelakt", "<strong>Tadelakt</strong>")
+                : descrizione;
+        }
+
+        function applicaLingua(lingua) {
+            linguaCorrente = lingua === 'en' ? 'en' : 'it';
+            document.documentElement.lang = linguaCorrente;
+            const selettore = document.getElementById('language-select');
+            if (selettore) {
+                selettore.value = linguaCorrente;
+                selettore.setAttribute('aria-label', traduci('Lingua'));
+                document.querySelector('label[for="language-select"]').textContent = traduci('Lingua');
+            }
+            document.getElementById('open-drawer-btn').setAttribute('aria-label', traduci('Apri Menu'));
+            document.getElementById('open-cart-btn').setAttribute('aria-label', traduci('Apri Carrello'));
+
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+                const nodo = walker.currentNode;
+                if (!testiOriginali.has(nodo)) testiOriginali.set(nodo, nodo.nodeValue);
+                const originale = testiOriginali.get(nodo);
+                const testo = originale.trim();
+                if (!testo) continue;
+                const tradotto = traduci(testo);
+                if (tradotto !== testo) {
+                    const inizio = originale.indexOf(testo);
+                    nodo.nodeValue = originale.slice(0, inizio) + tradotto + originale.slice(inizio + testo.length);
+                } else if (linguaCorrente === 'it') {
+                    nodo.nodeValue = originale;
+                }
+            }
+
+            document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(campo => {
+                const placeholderOriginale = campo.dataset.placeholderOriginale || campo.placeholder;
+                campo.dataset.placeholderOriginale = placeholderOriginale;
+                campo.placeholder = (traduzioniPlaceholder[placeholderOriginale] || {})[linguaCorrente] || placeholderOriginale;
+            });
+
+            document.title = linguaCorrente === 'it'
+                ? "Souk Marrakech - Artigianato Autentico Marocchino"
+                : `Souk Marrakech - ${traduci("Artigianato Autentico")}`;
+            renderizzaGriglie();
+            aggiornaInterfacciaCarrello();
+            const hash = window.location.hash;
+            if (hash.startsWith('#prodotto?id=')) mostraDettaglioProdotto(parseInt(hash.split('=')[1], 10));
+        }
+
+        const selettoreLingua = document.getElementById('language-select');
+        selettoreLingua.addEventListener('change', () => {
+            const lingua = selettoreLingua.value;
+            localStorage.setItem('souk_lingua', lingua);
+            applicaLingua(lingua);
+        });
+
+        /* ==========================================================================
+           1. DATABASE PRODOTTI
+           ========================================================================== */
+        const databaseProdotti = [
+            {
+                id: 1,
+                nome: "Portacandele Tadelakt",
+                categoria: "Decorazione",
+                prezzo: 1.00,
+                foto: "./img_1.jpg",
+                descrizione: "Si tratta di un complemento d'arredo scultoreo e artigianale, caratterizzato da una silhouette geometrica a losanga o diamante con piccoli trafori circolari. È realizzato a mano secondo la tecnica tradizionale marocchina del <strong>Tadelakt</strong>, un rivestimento a base di calce tipico dell'architettura di Marrakech.",
+            },
+            {
+                id: 2,
+                nome: "Candeliere Artigianale Berbero in Ceramica Tadelakt",
+                categoria: "Ceramica",
+                prezzo: 59.00,
+                foto: "./img_2.jpg",
+                descrizione: "Candeliere scultoreo berbero realizzato a mano in Marocco con finitura artigianale in Tadelakt bianco. Un pezzo d'arredamento unico che unisce tradizione etnica e design geometrico minimalista.",
+            },
+            {
+                id: 3,
+                nome: "Candeliere Berbero Scultoreo in Tadelakt Nero",
+                categoria: "Illuminazione",
+                prezzo: 45.50,
+                foto: "./img_3.jpg",
+                descrizione: "Esclusivo portacandele scultoreo realizzato interamente a mano in Marocco. Questo pezzo unico d'arredamento si distingue per la sua silhouette geometrica traforata d'ispirazione berbera.",
+            },
+            {
+                id: 4,
+                nome: "Vaso Scultoreo \"Circle\" in Ceramica Nero Lucido",
+                categoria: "Decorazione",
+                prezzo: 28.00,
+                foto: "./img_4.jpg",
+                descrizione: "Raffinato vaso decorativo in ceramica smaltata, caratterizzato da un'elegante silhouette arrotondata con un iconico foro centrale. La finitura nera ultra-lucida crea suggestivi giochi di luce.",
+            }
+        ];
+
+        /* ==========================================================================
+           2. STATO CARRELLO (CON LOCALSTORAGE PERSISTENTE)
+           ========================================================================== */
+        let carrello = (JSON.parse(localStorage.getItem('souk_carrello')) || []).map(item => {
+            const prodotto = databaseProdotti.find(p => p.id === item.id);
+            return prodotto ? { ...item, prezzo: prodotto.prezzo } : item;
+        });
+
+        function salvaCarrello() {
+            localStorage.setItem('souk_carrello', JSON.stringify(carrello));
+            aggiornaInterfacciaCarrello();
+        }
+
+        function aggiungiAlCarrello(idProdotto, quantita = 1) {
+            const prodotto = databaseProdotti.find(p => p.id === idProdotto);
+            if (!prodotto) return;
+
+            const elementoEsistente = carrello.find(item => item.id === idProdotto);
+            if (elementoEsistente) {
+                elementoEsistente.quantita += quantita;
+            } else {
+                carrello.push({ ...prodotto, quantita: quantita });
+            }
+
+            salvaCarrello();
+            apriCarrello();
+        }
+
+        function modificaQuantita(idProdotto, variazione) {
+            const elemento = carrello.find(item => item.id === idProdotto);
+            if (elemento) {
+                elemento.quantita += variazione;
+                if (elemento.quantita <= 0) {
+                    carrello = carrello.filter(item => item.id !== idProdotto);
+                }
+                salvaCarrello();
+            }
+        }
+
+        function aggiornaInterfacciaCarrello() {
+            const badge = document.getElementById('cart-badge');
+            const container = document.getElementById('cart-items-container');
+            const totalEl = document.getElementById('cart-total-price');
+            const modalTotalEl = document.getElementById('modal-total-price');
+
+            const totaleArticoli = carrello.reduce((sum, item) => sum + item.quantita, 0);
+            const subtotaleProdotti = carrello.reduce((sum, item) => sum + (item.prezzo * item.quantita), 0);
+            const totaleFinale = subtotaleProdotti > 0 ? (subtotaleProdotti + COSTO_SPEDIZIONE) : 0;
+
+            if (totaleArticoli > 0) {
+                badge.textContent = totaleArticoli;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            totalEl.textContent = `€${totaleFinale.toFixed(2)}`;
+            if (modalTotalEl) {
+                modalTotalEl.innerHTML = `
+                    <div class="w-full flex justify-between items-center text-darkcharcoal font-bold">
+                        <span>Prodotti: €${subtotaleProdotti.toFixed(2)} + Spedizione: €${COSTO_SPEDIZIONE.toFixed(2)}</span>
+                        <span class="text-terracotta font-extrabold text-base">Totale: €${totaleFinale.toFixed(2)}</span>
+                    </div>
+                `;
+            }
+
+            if (carrello.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-gray-400 space-y-3">
+                        <i class="fa-solid fa-basket-shopping text-4xl"></i>
+                        <p class="text-sm">${traduci("Il tuo carrello è vuoto")}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = carrello.map(item => `
+                <div class="flex items-center gap-4 bg-sand p-3 rounded-2xl border border-gray-100">
+                    <img src="${item.foto}" alt="${nomeProdotto(item)}" onerror="mostraFallbackImmagine(this)" class="w-12 h-16 object-contain rounded-xl bg-sand">
+                    <div class="flex-grow">
+                        <h4 class="font-bold text-xs text-darkcharcoal">${nomeProdotto(item)}</h4>
+                        <div class="text-terracotta font-bold text-xs mt-1">€${item.prezzo.toFixed(2)}</div>
+                        <div class="flex items-center gap-2 mt-2">
+                            <button onclick="modificaQuantita(${item.id}, -1)" class="w-6 h-6 bg-white rounded-md flex items-center justify-center text-xs font-bold border shadow-sm">-</button>
+                            <span class="text-xs font-bold px-1">${item.quantita}</span>
+                            <button onclick="modificaQuantita(${item.id}, 1)" class="w-6 h-6 bg-white rounded-md flex items-center justify-center text-xs font-bold border shadow-sm">+</button>
+                        </div>
+                    </div>
+                    <button onclick="modificaQuantita(${item.id}, -${item.quantita})" aria-label="${traduci("Rimuovi prodotto")}" title="${traduci("Rimuovi prodotto")}" class="text-gray-400 hover:text-red-500 p-2 text-sm">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('') + `
+                <div class="p-3 bg-terracotta-light rounded-xl text-xs text-terracotta font-semibold flex justify-between items-center mt-4">
+                    <span>${traduci("Spedizione (Italia):")}</span>
+                    <span>€${COSTO_SPEDIZIONE.toFixed(2)}</span>
+                </div>
+            `;
+        }
+
+        /* ==========================================================================
+           3. SISTEMA DI ROUTING MULTI-PAGINA (HASH SPA)
+           ========================================================================== */
+        function naviga() {
+            const hash = window.location.hash || '#home';
+            document.body.classList.toggle('catalogo-attivo', hash === '#prodotti');
+            document.body.classList.toggle('home-attivo', hash === '#home');
+            document.body.classList.toggle('sfondo-marocchino-attivo', hash !== '#home');
+            const views = document.querySelectorAll('.page-view');
+            
+            views.forEach(v => v.classList.remove('active'));
+
+            if (hash.startsWith('#prodotto?id=')) {
+                const idProdotto = parseInt(hash.split('=')[1]);
+                mostraDettaglioProdotto(idProdotto);
+                document.getElementById('view-prodotto-dettaglio').classList.add('active');
+            } else if (hash === '#prodotti') {
+                document.getElementById('view-prodotti').classList.add('active');
+            } else if (hash === '#chisiamo') {
+                document.getElementById('view-chisiamo').classList.add('active');
+            } else if (hash === '#contatti') {
+                document.getElementById('view-contatti').classList.add('active');
+            } else {
+                document.getElementById('view-home').classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('hashchange', naviga);
+        window.addEventListener('DOMContentLoaded', () => {
+            renderizzaGriglie();
+            aggiornaInterfacciaCarrello();
+            applicaLingua(localStorage.getItem('souk_lingua') || 'it');
+            naviga();
+            inizializzaPulsantiPayPal();
+        });
+
+        /* ==========================================================================
+           4. RENDERIZZAZIONE PRODOTTI
+           ========================================================================== */
+        function creaCardHTML(p) {
+            return `
+                <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative overflow-hidden group cursor-pointer" onclick="window.location.hash='#prodotto?id=${p.id}'">
+                            <img src="${p.foto}" alt="${nomeProdotto(p)}" onerror="mostraFallbackImmagine(this)" class="w-full h-56 object-contain bg-sand">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-serif text-lg font-bold text-darkcharcoal cursor-pointer hover:text-terracotta" onclick="window.location.hash='#prodotto?id=${p.id}'">${nomeProdotto(p)}</h3>
+                            <p class="text-gray-500 text-xs line-clamp-2 mt-1 mb-3">${descrizioneProdotto(p)}</p>
+                            <div class="text-xl font-bold text-terracotta">€${p.prezzo.toFixed(2)}</div>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0 flex gap-2">
+                        <a href="#prodotto?id=${p.id}" class="flex-grow bg-terracotta-light text-terracotta font-bold text-xs py-3 rounded-xl text-center hover:bg-terracotta hover:text-white transition">
+                            ${traduci("Vedi Dettagli")}
+                        </a>
+                        <button onclick="aggiungiAlCarrello(${p.id})" class="bg-saffron text-darkcharcoal p-3 rounded-xl hover:bg-saffron-dark transition" title="${traduci("Aggiungi al carrello")}">
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderizzaGriglie() {
+            document.getElementById('home-featured-grid').innerHTML = databaseProdotti.slice(0, 4).map(creaCardHTML).join('');
+            document.getElementById('full-catalog-grid').innerHTML = databaseProdotti.map(creaCardHTML).join('');
+        }
+
+        function mostraDettaglioProdotto(id) {
+            const p = databaseProdotti.find(prod => prod.id === id);
+            const container = document.getElementById('single-product-container');
+            if (!p) {
+                container.innerHTML = `<p class="text-center py-8">${traduci("Prodotto non trovato.")}</p>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="grid lg:grid-cols-2 gap-10 items-center">
+                    <div class="relative rounded-2xl overflow-hidden border border-gray-100 shadow-md">
+                        <img src="${p.foto}" alt="${nomeProdotto(p)}" onerror="mostraFallbackImmagine(this)" class="w-full h-96 object-contain bg-sand">
+                    </div>
+                    <div class="space-y-6">
+                        <h1 class="font-serif text-3xl font-bold text-darkcharcoal">${nomeProdotto(p)}</h1>
+                        <div class="text-3xl font-bold text-terracotta">€${p.prezzo.toFixed(2)}</div>
+                        <p class="text-gray-600 text-sm leading-relaxed">${descrizioneProdotto(p)}</p>
+                        
+                        <div class="pt-4 flex flex-col sm:flex-row gap-3">
+                            <button onclick="aggiungiAlCarrello(${p.id})" class="bg-terracotta hover:bg-terracotta-dark text-white font-bold py-4 px-8 rounded-xl shadow-md flex items-center justify-center gap-2 text-sm transition flex-grow">
+                                <i class="fa-solid fa-bag-shopping text-base"></i>
+                                <span>${traduci("Aggiungi al Carrello")}</span>
+                            </button>
+                        </div>
+
+                        <div class="pt-6 border-t border-gray-100 flex items-center gap-3 text-xs text-gray-500">
+                            <i class="fa-solid fa-truck-fast text-terracotta text-base"></i>
+                            <span>${traduci("Spedizione rapida tracciabile in tutta Italia (gratis)")}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /* ==========================================================================
+           5. APERTURA / CHIUSURA DRAWER
+           ========================================================================== */
+        const drawerMenu = document.getElementById('drawer-menu');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const checkoutOverlay = document.getElementById('checkout-modal-overlay');
+
+        document.getElementById('open-drawer-btn').addEventListener('click', () => {
+            drawerMenu.classList.remove('-translate-x-full');
+            drawerOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        });
+
+        function chiudiDrawerMenu() {
+            drawerMenu.classList.add('-translate-x-full');
+            drawerOverlay.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        document.getElementById('close-drawer-btn').addEventListener('click', chiudiDrawerMenu);
+        drawerOverlay.addEventListener('click', chiudiDrawerMenu);
+        document.querySelectorAll('.drawer-nav-item').forEach(el => el.addEventListener('click', chiudiDrawerMenu));
+
+        function apriCarrello() {
+            cartDrawer.classList.remove('translate-x-full');
+            cartOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function chiudiCarrello() {
+            cartDrawer.classList.add('translate-x-full');
+            cartOverlay.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        document.getElementById('open-cart-btn').addEventListener('click', apriCarrello);
+        document.getElementById('close-cart-btn').addEventListener('click', chiudiCarrello);
+        cartOverlay.addEventListener('click', chiudiCarrello);
+
+        document.getElementById('open-checkout-btn').addEventListener('click', () => {
+            if (carrello.length === 0) {
+                alert(traduci("Il tuo carrello è vuoto!"));
+                return;
+            }
+            chiudiCarrello();
+            checkoutOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        });
+
+        document.getElementById('close-checkout-btn').addEventListener('click', () => {
+            checkoutOverlay.classList.add('opacity-0', 'pointer-events-none');
+        });
+
+        /* ==========================================================================
+           6. INTEGRAZIONE PAYPAL SDK NATIVO, EMAILJS & LOGICA CASSA
+           ========================================================================== */
+        function convalidaModuloSpedizione() {
+            const form = document.getElementById('checkout-form');
+            const nome = document.getElementById('cust-name').value.trim();
+            const email = document.getElementById('cust-email').value.trim();
+            const campoTelefono = document.getElementById('cust-phone');
+            const telefono = campoTelefono.value.trim();
+            const citta = document.getElementById('cust-city').value.trim();
+            const indirizzo = document.getElementById('cust-address').value.trim();
+
+            const cifreTelefono = telefono.replace(/\D/g, '');
+            const formatoTelefonoValido = /^\+?[0-9().\s-]+$/.test(telefono)
+                && cifreTelefono.length >= 8
+                && cifreTelefono.length <= 15;
+            campoTelefono.setCustomValidity(
+                formatoTelefonoValido
+                    ? ''
+                    : traduci('Inserisci un numero valido con 8–15 cifre. Puoi usare +, spazi, parentesi e trattini.')
+            );
+
+            return form.reportValidity();
+        }
+
+        function inizializzaPulsantiPayPal() {
+            if (typeof paypal === 'undefined') return;
+
+            paypal.Buttons({
+                style: {
+                    layout: 'vertical',
+                    color:  'gold',
+                    shape:  'rect',
+                    label:  'paypal'
+                },
+                onClick: function(data, actions) {
+                    if (!convalidaModuloSpedizione()) {
+                        return actions.reject();
+                    }
+                },
+                createOrder: function(data, actions) {
+                    const subtotale = carrello.reduce((sum, item) => sum + (item.prezzo * item.quantita), 0);
+                    const totaleConSpedizione = subtotale + COSTO_SPEDIZIONE;
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: totaleConSpedizione.toFixed(2)
+                            }
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(dettagliPagamento) {
+                        // =============================================================
+                        // ESEGUITO SOLTANTO DOPO CHE IL PAGAMENTO È ANDATO A BUON FINE!
+                        // =============================================================
+                        const nomeCliente = document.getElementById('cust-name').value;
+                        const emailCliente = document.getElementById('cust-email').value;
+                        const telefonoCliente = document.getElementById('cust-phone').value;
+                        const cittaCliente = document.getElementById('cust-city').value;
+                        const indirizzoCliente = document.getElementById('cust-address').value;
+                        const noteCliente = document.getElementById('cust-notes').value;
+
+                        let listaProdottiTesto = "";
+                        let subtotale = 0;
+                        carrello.forEach(item => {
+                            const sub = item.prezzo * item.quantita;
+                            subtotale += sub;
+                            listaProdottiTesto += `- ${item.quantita}x ${nomeProdotto(item)} (€${sub.toFixed(2)})\n`;
+                        });
+                        listaProdottiTesto += `\nSpedizione (Italia): €${COSTO_SPEDIZIONE.toFixed(2)}`;
+
+                        const totaleConSpedizione = subtotale + COSTO_SPEDIZIONE;
+
+                        const templateParams = {
+                            cust_name: nomeCliente,
+                            cust_email: emailCliente,
+                            cust_phone: telefonoCliente,
+                            cust_city: cittaCliente,
+                            cust_address: indirizzoCliente,
+                            cust_notes: noteCliente || "Nessuna nota",
+                            order_details: listaProdottiTesto,
+                            total_price: totaleConSpedizione.toFixed(2)
+                        };
+
+                        emailjs.send('service_950xqio', 'template_304nr56', templateParams)
+                            .then(function(response) {
+                                console.log('Email d\'ordine inviata con successo!', response.status, response.text);
+                            }, function(error) {
+                                console.error('Errore nell\'invio dell\'email:', error);
+                            });
+
+                        alert('Pagamento completato con successo da ' + dettagliPagamento.payer.name.given_name + '! Ti è stata inviata l\'email di conferma ordine.');
+
+                        carrello = [];
+                        salvaCarrello();
+                        checkoutOverlay.classList.add('opacity-0', 'pointer-events-none');
+                    });
+                },
+                onError: function(err) {
+                    alert("Si è verificato un errore durante il pagamento. Riprova o scegli un altro metodo.");
+                }
+            }).render('#paypal-button-container');
+        }
+    </script>
+</body>
+</html>
