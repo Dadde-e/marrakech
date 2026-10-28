@@ -84,6 +84,13 @@
             display: none !important;
         }
 
+        /* Garantisce che il contenitore PayPal sia sempre visibile e dimensionato su mobile */
+        #paypal-button-container {
+            min-height: 120px;
+            position: relative;
+            width: 100%;
+        }
+
         .zellige-pattern {
             background-color: #FAF5EF;
             background-image: radial-gradient(#C85A32 0.75px, transparent 0.75px), radial-gradient(#0F4C81 0.75px, #FAF5EF 0.75px);
@@ -344,12 +351,12 @@
                     </div>
                 </div>
 
-                <!-- Sezione Pagamento PayPal / Carte (Senza MyBank) -->
+                <!-- Sezione Pagamento PayPal / Carte -->
                 <div class="space-y-3 pt-2">
                     <label class="block text-xs font-bold text-gray-700">Paga con PayPal o Carta di Credito:</label>
                     
                     <!-- Contenitore Ufficiale dei Pulsanti PayPal / Carte -->
-                    <div id="paypal-button-container" class="w-full min-h-[50px]"></div>
+                    <div id="paypal-button-container" class="w-full min-h-[120px]"></div>
                 </div>
             </form>
         </div>
