@@ -12,6 +12,20 @@
     <meta property="og:image" content="img_homme.jpeg">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23C85A32'/%3E%3Cpath d='M50 14 60 39 86 50 60 61 50 86 40 61 14 50 40 39Z' fill='%23D4AF37' stroke='%23FAF5EF' stroke-width='5'/%3E%3C/svg%3E">
     
+    <!-- Definizione globale della funzione di fallback immagini (prima di ogni rendering) -->
+    <script>
+        window.mostraFallbackImmagine = function(immagine) {
+            if (!immagine || immagine.dataset.fallbackEseguito) return;
+            immagine.dataset.fallbackEseguito = "true";
+            const fallback = document.createElement('div');
+            fallback.className = `${immagine.className || ''} placeholder-img image-fallback`;
+            fallback.setAttribute('role', 'img');
+            fallback.setAttribute('aria-label', immagine.alt || 'Immagine non disponibile');
+            fallback.textContent = immagine.alt || 'Immagine non disponibile';
+            immagine.replaceWith(fallback);
+        };
+    </script>
+
     <!-- Tailwind CSS per classi utility -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome per le icone -->
@@ -31,15 +45,6 @@
     </script>
 
     <script>
-        window.mostraFallbackImmagine = function(immagine) {
-            const fallback = document.createElement('div');
-            fallback.className = `${immagine.className} placeholder-img image-fallback`;
-            fallback.setAttribute('role', 'img');
-            fallback.setAttribute('aria-label', immagine.alt || 'Immagine non disponibile');
-            fallback.textContent = immagine.alt || 'Immagine non disponibile';
-            immagine.replaceWith(fallback);
-        };
-
         tailwind.config = {
             theme: {
                 extend: {
@@ -294,7 +299,7 @@
             </button>
 
             <h3 class="font-serif text-2xl font-bold text-darkcharcoal mb-1">Dati di Spedizione & Pagamento</h3>
-            <p class="text-xs text-gray-500 mb-6">Compila l'indirizzo e procedi al pagamento sicuro con carta tramite Stripe.</p>
+            <p class="text-xs text-gray-500 mb-6">Compila l'indirizzo e procedi al pagamento sicuro tramite Stripe.</p>
 
             <!-- Form Dati Spedizione -->
             <form id="checkout-form" class="space-y-4">
@@ -341,7 +346,7 @@
                 <div class="space-y-3 pt-2">
                     <button type="button" id="stripe-pay-btn" onclick="pagaConStripe()" class="w-full bg-[#635BFF] hover:bg-[#5248EE] text-white font-bold py-4 px-4 rounded-xl flex items-center justify-center gap-3 text-sm shadow-lg transition">
                         <i class="fa-solid fa-credit-card text-lg"></i>
-                        <span>Paga con Carta (Stripe)</span>
+                        <span id="stripe-pay-btn-text">Paga con Carta (Stripe)</span>
                     </button>
                 </div>
             </form>
@@ -555,7 +560,7 @@
     <!-- ================= LOGICA JAVASCRIPT ================= -->
     <script>
         // Spedizione fissa in Italia (€7.90)
-        const COSTO_SPEDIZIONE = 0;
+        const COSTO_SPEDIZIONE = 7.90;
 
         // Payment Link Ufficiale di Stripe
         const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/dRm14m2CYbnT0SM4fC53O00';
@@ -568,7 +573,7 @@
                 "Guarda le Storie sui prodotti scelti di persona nei souk!": "See stories about products personally selected in the souks!",
                 "Pagamenti Sicuri Garantiti": "Secure Payments Guaranteed", "Il Tuo Carrello": "Your Cart", "Totale Ordine:": "Order Total:",
                 "Procedi alla Cassa (Inserisci Indirizzo)": "Checkout (Enter Address)", "Dati di Spedizione & Pagamento": "Shipping & Payment Details",
-                "Compila l'indirizzo e procedi al pagamento sicuro con carta tramite Stripe.": "Enter your shipping details and proceed to secure card payment via Stripe.",
+                "Compila l'indirizzo e procedi al pagamento sicuro tramite Stripe.": "Enter your shipping details and proceed to secure payment via Stripe.",
                 "Nome e Cognome *": "Full Name *", "Email *": "Email *", "Telefono *": "Phone *", "Città e CAP *": "City and ZIP Code *",
                 "Indirizzo di Spedizione Completo *": "Full Shipping Address *", "Note per il Corriere (Opzionale)": "Delivery Notes (Optional)",
                 "Es. Lasciare al portinaio": "E.g. Leave with the concierge", "Totale Prodotti:": "Products Total:",
@@ -695,7 +700,7 @@
                 id: 1,
                 nome: "Portacandele Tadelakt",
                 categoria: "Decorazione",
-                prezzo: 1.00,
+                prezzo: 39.90,
                 foto: "./img_1.jpg",
                 descrizione: "Si tratta di un complemento d'arredo scultoreo e artigianale, caratterizzato da una silhouette geometrica a losanga o diamante con piccoli trafori circolari. È realizzato a mano secondo la tecnica tradizionale marocchina del <strong>Tadelakt</strong>, un rivestimento a base di calce tipico dell'architettura di Marrakech.",
             },
@@ -769,6 +774,7 @@
             const container = document.getElementById('cart-items-container');
             const totalEl = document.getElementById('cart-total-price');
             const modalTotalEl = document.getElementById('modal-total-price');
+            const btnStripeText = document.getElementById('stripe-pay-btn-text');
 
             const totaleArticoli = carrello.reduce((sum, item) => sum + item.quantita, 0);
             const subtotaleProdotti = carrello.reduce((sum, item) => sum + (item.prezzo * item.quantita), 0);
@@ -789,6 +795,10 @@
                         <span class="text-terracotta font-extrabold text-base">Totale: €${totaleFinale.toFixed(2)}</span>
                     </div>
                 `;
+            }
+
+            if (btnStripeText) {
+                btnStripeText.textContent = `Paga con Carta (€${totaleFinale.toFixed(2)})`;
             }
 
             if (carrello.length === 0) {
@@ -1005,6 +1015,11 @@
                 return;
             }
 
+            if (carrello.length === 0) {
+                alert(traduci("Il tuo carrello è vuoto!"));
+                return;
+            }
+
             const nomeCliente = document.getElementById('cust-name').value;
             const emailCliente = document.getElementById('cust-email').value;
             const telefonoCliente = document.getElementById('cust-phone').value;
@@ -1050,8 +1065,11 @@
                     carrello = [];
                     salvaCarrello();
 
-                    // Reindirizza l'utente sulla pagina sicura di Stripe Checkout
-                    window.location.href = STRIPE_PAYMENT_LINK;
+                    // Costruisci il link Stripe passando l'email del cliente per comodità
+                    const urlStripeFinal = `${STRIPE_PAYMENT_LINK}?prefilled_email=${encodeURIComponent(emailCliente)}`;
+
+                    // Reindirizza l'utente sulla pagina di pagamento sicura Stripe
+                    window.location.href = urlStripeFinal;
                 });
         }
     </script>
