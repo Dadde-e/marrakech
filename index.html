@@ -341,7 +341,7 @@
                 <div class="space-y-3 pt-2">
                     <button type="button" id="stripe-pay-btn" onclick="pagaConStripe()" class="w-full bg-[#635BFF] hover:bg-[#5248EE] text-white font-bold py-4 px-4 rounded-xl flex items-center justify-center gap-3 text-sm shadow-lg transition">
                         <i class="fa-solid fa-credit-card text-lg"></i>
-                        <span>Paga con Carta (Stripe / Apple Pay / Google Pay)</span>
+                        <span>Paga con Carta (Stripe)</span>
                     </button>
                 </div>
             </form>
@@ -393,8 +393,8 @@
                             <i class="fa-solid fa-truck-fast"></i>
                         </div>
                         <div class="text-left">
-                            <h4 class="font-bold text-sm text-gray-900">Spedizione Sicura</h4>
-                            <p class="text-xs text-gray-500">Imballi protettivi tracciabili</p>
+                            <h4 class="font-bold text-sm text-gray-900">Spedizione Fissa</h4>
+                            <p class="text-xs text-gray-500">€7.90 in tutta Italia</p>
                         </div>
                     </div>
                     <div class="flex items-center justify-center gap-4 p-4">
@@ -412,7 +412,7 @@
                         </div>
                         <div class="text-left">
                             <h4 class="font-bold text-sm text-gray-900">Pagamenti Sicuri</h4>
-                            <p class="text-xs text-gray-500">Carte di Credito & Stripe</p>
+                            <p class="text-xs text-gray-500">Carte di Credito con Stripe</p>
                         </div>
                     </div>
                 </div>
@@ -554,11 +554,11 @@
 
     <!-- ================= LOGICA JAVASCRIPT ================= -->
     <script>
-        // Spedizione gratuita in Italia
-        const COSTO_SPEDIZIONE = 0;
+        // Spedizione fissa in Italia (€7.90)
+        const COSTO_SPEDIZIONE = 7.90;
 
-        // Inizializzazione Stripe con la tua chiave Live
-        const stripe = Stripe('pk_live_51UVd9rAiybHTkFekV4PgHAjyILvqPQUzHzYMp6LAQYcqJxQfFRFv2bjJoVsvmgfNTwNqszmlAWrXfihTHMLtjHRS00Lfq1HrYY');
+        // Payment Link Ufficiale di Stripe
+        const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/dRm14m2CYbnT0SM4fC53O00';
 
         const traduzioni = {
             en: {
@@ -573,18 +573,18 @@
                 "Indirizzo di Spedizione Completo *": "Full Shipping Address *", "Note per il Corriere (Opzionale)": "Delivery Notes (Optional)",
                 "Es. Lasciare al portinaio": "E.g. Leave with the concierge", "Totale Prodotti:": "Products Total:",
                 "Spedizione (Italia):": "Shipping (Italy):",
-                "Paga con Carta (Stripe / Apple Pay / Google Pay)": "Pay with Card (Stripe / Apple Pay / Google Pay)",
+                "Paga con Carta (Stripe)": "Pay with Card (Stripe)",
                 "Artigianato Selezionato a Mano": "Hand-Selected Handicrafts", "L'Autentica Magia di Marrakech a Casa Tua": "The Authentic Magic of Marrakech at Your Home",
                 "Oggetti unici fatti a mano dai maestri artigiani della Medina, scelti di persona nei souk.": "Unique pieces made by the Medina's master artisans. Ceramics, leather goods, tagines and lanterns selected in person.",
-                "Vedi Tutti i Prodotti": "Explore All Products", "Scopri la Storia": "Discover Our Story", "Spedizione Sicura": "Secure Shipping",
-                "Imballi protettivi tracciabili": "Protective, trackable packaging", "100% Autentico": "100% Authentic",
+                "Vedi Tutti i Prodotti": "Explore All Products", "Scopri la Storia": "Discover Our Story", "Spedizione Fissa": "Flat Shipping",
+                "€7.90 in tutta Italia": "€7.90 across Italy", "100% Autentico": "100% Authentic",
                 "Selezionato nei souk della Medina": "Selected in the Medina souks", "Pagamenti Sicuri": "Secure Payments",
-                "Carte di Credito & Stripe": "Credit Cards & Stripe", "In Evidenza": "Featured", "Prodotti Popolari": "Popular Products",
+                "Carte di Credito con Stripe": "Credit Cards via Stripe", "In Evidenza": "Featured", "Prodotti Popolari": "Popular Products",
                 "Vedi Tutti": "View All", "Il Nostro Catalogo": "Our Collection",
                 "Esplora tutti gli oggetti artigianali disponibili in pronta consegna.": "Explore all handcrafted items available for immediate delivery.",
                 "Torna al Catalogo Prodotti": "Back to the Collection", "Prodotto non trovato.": "Product not found.",
                 "Vedi Dettagli": "View Details", "Aggiungi al carrello": "Add to cart", "Aggiungi al Carrello": "Add to Cart",
-                "Spedizione rapida tracciabile in tutta Italia (gratis)": "Free trackable shipping across Italy",
+                "Spedizione rapida tracciabile in tutta Italia (€7.90)": "Fast trackable shipping across Italy (€7.90)",
                 "Esperienze & Viaggi": "Experiences & Travel", "Segui la pagina Instagram per vedere dal vivo la selezione di ogni oggetto nei souk!": "Follow us on Instagram to see each item selected in person in the souks!",
                 "La Nostra Storia": "Our Story", "Passione per l'Artigianato Autentico": "A Passion for Authentic Handicrafts",
                 "Questo e-commerce nasce dall'amore per la cultura e la maestria artigianale di": "This online shop was born from a love of the culture and craftsmanship of",
@@ -695,7 +695,7 @@
                 id: 1,
                 nome: "Portacandele Tadelakt",
                 categoria: "Decorazione",
-                prezzo: 1.00,
+                prezzo: 39.90,
                 foto: "./img_1.jpg",
                 descrizione: "Si tratta di un complemento d'arredo scultoreo e artigianale, caratterizzato da una silhouette geometrica a losanga o diamante con piccoli trafori circolari. È realizzato a mano secondo la tecnica tradizionale marocchina del <strong>Tadelakt</strong>, un rivestimento a base di calce tipico dell'architettura di Marrakech.",
             },
@@ -922,7 +922,7 @@
 
                         <div class="pt-6 border-t border-gray-100 flex items-center gap-3 text-xs text-gray-500">
                             <i class="fa-solid fa-truck-fast text-terracotta text-base"></i>
-                            <span>${traduci("Spedizione rapida tracciabile in tutta Italia (gratis)")}</span>
+                            <span>${traduci("Spedizione rapida tracciabile in tutta Italia (€7.90)")}</span>
                         </div>
                     </div>
                 </div>
@@ -980,7 +980,7 @@
         });
 
         /* ==========================================================================
-           6. VALIDAZIONE & PAGAMENTO STRIPE + EMAILJS
+           6. VALIDAZIONE, NOTIFICA EMAILJS & REINDIRIZZAMENTO STRIPE
            ========================================================================== */
         function convalidaModuloSpedizione() {
             const form = document.getElementById('checkout-form');
@@ -1012,7 +1012,7 @@
             const indirizzoCliente = document.getElementById('cust-address').value;
             const noteCliente = document.getElementById('cust-notes').value;
 
-            // Invio email di notifica ordine tramite EmailJS
+            // Invio notifica ordine dettagliata tramite EmailJS
             let listaProdottiTesto = "";
             let subtotale = 0;
             carrello.forEach(item => {
@@ -1034,21 +1034,25 @@
                 total_price: totaleConSpedizione.toFixed(2)
             };
 
+            // Disabilita momentaneamente il pulsante per evitare doppi click
+            const btnStripe = document.getElementById('stripe-pay-btn');
+            btnStripe.disabled = true;
+            btnStripe.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Reindirizzamento a Stripe...`;
+
             emailjs.send('service_950xqio', 'template_304nr56', templateParams)
                 .then(function(response) {
-                    console.log('Email d\'ordine inviata con successo!', response.status, response.text);
+                    console.log('Notifica d\'ordine inviata tramite EmailJS!', response.status, response.text);
                 }, function(error) {
-                    console.error('Errore nell\'invio dell\'email:', error);
-                });
+                    console.error('Errore invio email:', error);
+                })
+                .finally(function() {
+                    // Svuota il carrello salvato in locale
+                    carrello = [];
+                    salvaCarrello();
 
-            // Nota: Con una chiave Publishable di Stripe (lato client statico), 
-            // il modo più sicuro senza un server backend è reindirizzare l'utente a un Payment Link Stripe o completare l'ordine.
-            // Svuotiamo il carrello e diamo conferma dell'ordine registrato.
-            alert('Ordine registrato con successo! Grazie ' + nomeCliente + '. Ti è stata inviata un\'email di conferma.');
-            
-            carrello = [];
-            salvaCarrello();
-            checkoutOverlay.classList.add('opacity-0', 'pointer-events-none');
+                    // Reindirizza l'utente sulla pagina sicura di Stripe Checkout
+                    window.location.href = STRIPE_PAYMENT_LINK;
+                });
         }
     </script>
 </body>
