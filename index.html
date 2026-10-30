@@ -200,7 +200,7 @@
                 <div class="p-4 bg-[#141312] border border-[#2A2725]">
                     <div id="modal-total-price" class="flex justify-between text-xs tracking-widest text-[#EAE6E1] font-serif"></div>
                 </div>
-                <button type="button" id="whatsapp-order-btn" onclick="inviaOrdineWhatsApp()" data-i18n="payCardBtn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-luxuryDark font-semibold py-4 text-xs tracking-[0.2em] uppercase transition">
+                <button type="button" id="whatsapp-order-btn" data-i18n="payCardBtn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-luxuryDark font-semibold py-4 text-xs tracking-[0.2em] uppercase transition">
                     INVIA ORDINE SU WHATSAPP
                 </button>
             </form>
@@ -859,8 +859,13 @@
                 `TOTALE: €${totale.toFixed(2)}`
             ].filter(Boolean).join('\n');
             const url = 'https://wa.me/393391290800?text=' + encodeURIComponent(messaggio);
-            window.open(url, '_blank', 'noopener,noreferrer');
+            // Navigazione nella stessa scheda: evita che il blocco popup impedisca l'apertura di WhatsApp.
+            window.location.assign(url);
         }
+
+        // Collega il pulsante dopo che il DOM è stato creato e rende la funzione accessibile in modo esplicito.
+        window.inviaOrdineWhatsApp = inviaOrdineWhatsApp;
+        document.getElementById('whatsapp-order-btn').addEventListener('click', inviaOrdineWhatsApp);
 
         // Notifica leggera al posto dell'apertura forzata del carrello
         let toastTimer;
