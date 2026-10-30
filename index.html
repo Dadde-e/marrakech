@@ -200,7 +200,7 @@
                 <div class="p-4 bg-[#141312] border border-[#2A2725]">
                     <div id="modal-total-price" class="flex justify-between text-xs tracking-widest text-[#EAE6E1] font-serif"></div>
                 </div>
-                <button type="button" id="stripe-pay-btn" onclick="pagaConStripe()" data-i18n="payCardBtn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-luxuryDark font-semibold py-4 text-xs tracking-[0.2em] uppercase transition">
+                <button type="button" id="stripe-pay-btn" onclick="inviaOrdineWhatsApp()" data-i18n="payCardBtn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-luxuryDark font-semibold py-4 text-xs tracking-[0.2em] uppercase transition">
                     PAGA ORA CON CARTA
                 </button>
             </form>
@@ -437,8 +437,6 @@
     <!-- LOGICA JAVASCRIPT INTEGRATA -->
     <script>
         const COSTO_SPEDIZIONE = 7.90;
-        const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/dRm14m2CYbnT0SM4fC53O00';
-
         // DIZIONARIO TRADUZIONI (IT / EN)
         const i18n = {
             it: {
@@ -453,7 +451,7 @@
                 checkoutBtn: "PROCEDI ALLA CASSA",
                 checkoutTitle: "DATI DI SPEDIZIONE",
                 checkoutDesc: "Inserisci l'indirizzo per completare l'ordine.",
-                payCardBtn: "PAGA ORA CON CARTA",
+                payCardBtn: "INVIA ORDINE SU WHATSAPP",
                 addToCart: "AGGIUNGI AL CARRELLO",
                 callUs: "CHIAMACI",
                 waInfo: "INFO WHATSAPP",
@@ -490,10 +488,10 @@
                 igTag: "ESPERIENZE & VIAGGI", igBox: "Segui la pagina Instagram per vedere dal vivo la selezione di ogni oggetto nei souk!", igBtn: "GUARDA I RETROSCENA SU INSTAGRAM",
                 contactText: "Vuoi un prodotto su misura o desideri informazioni sui tempi di spedizione? Scrivici direttamente.",
                 ctWa: "WhatsApp Diretto", ctWaSub: "Rispondiamo in tempi rapidi", ctMail: "Email Assistenza", ctMailSub: "Per informazioni e ordini",
-                thanksTitle: "Ordine ricevuto", thanksText: "Pagamento verificato. La conferma dell’ordine sarà inviata via email. Per qualsiasi dubbio scrivici su WhatsApp.", thanksBtn: "CONTINUA A SCEGLIERE",
+                thanksTitle: "Ordine ricevuto", thanksText: "Per completare l’ordine, invia il messaggio preparato su WhatsApp. Ti ricontatteremo per confermare i dettagli.", thanksBtn: "CONTINUA A SCEGLIERE",
                 cartEmpty: "Il carrello è vuoto", addShort: "AGGIUNGI", added: "Aggiunto al carrello", maxQty: "Hai raggiunto la quantità disponibile", openCart: "Apri carrello",
                 ariaMenu: "Apri il menu", ariaClose: "Chiudi", ariaCart: "Apri il carrello", remove: "Rimuovi dal carrello",
-                lblProducts: "PRODOTTI", lblShipping: "SPEDIZIONE", lblTotal: "TOTALE", redirecting: "Reindirizzamento a Stripe...",
+                lblProducts: "PRODOTTI", lblShipping: "SPEDIZIONE", lblTotal: "TOTALE", redirecting: "Apertura di WhatsApp...",
                 specMat: "Materiale:", specDim: "Dimensioni:", dimAsk: "Contattaci per le misure precise",
                 detailHandmade: "Lavorazione artigianale", detailDecor: "Design d’arredo", detailShipping: "Spedizione in Italia",
                 phName: "NOME E COGNOME *", phEmail: "EMAIL *", phPhone: "TELEFONO *", phCity: "CITTÀ E CAP *", phAddress: "INDIRIZZO DI SPEDIZIONE COMPLETO *", phNotes: "NOTE PER IL CORRIERE (OPZIONALE)"
@@ -510,7 +508,7 @@
                 checkoutBtn: "PROCEED TO CHECKOUT",
                 checkoutTitle: "SHIPPING DETAILS",
                 checkoutDesc: "Enter your shipping details to complete the order.",
-                payCardBtn: "PAY WITH CARD",
+                payCardBtn: "SEND ORDER ON WHATSAPP",
                 addToCart: "ADD TO CART",
                 callUs: "CALL US",
                 waInfo: "WHATSAPP INFO",
@@ -550,7 +548,7 @@
                 thanksTitle: "Order received", thanksText: "Payment verified. Your order confirmation will be sent by email. For any question, message us on WhatsApp.", thanksBtn: "KEEP BROWSING",
                 cartEmpty: "Your cart is empty", addShort: "ADD", added: "Added to cart", maxQty: "You have reached the available quantity", openCart: "Open cart",
                 ariaMenu: "Open menu", ariaClose: "Close", ariaCart: "Open cart", remove: "Remove from cart",
-                lblProducts: "PRODUCTS", lblShipping: "SHIPPING", lblTotal: "TOTAL", redirecting: "Redirecting to Stripe...",
+                lblProducts: "PRODUCTS", lblShipping: "SHIPPING", lblTotal: "TOTAL", redirecting: "Opening WhatsApp...",
                 specMat: "Material:", specDim: "Dimensions:", dimAsk: "Contact us for exact measurements",
                 detailHandmade: "Handcrafted finish", detailDecor: "Decorative design", detailShipping: "Shipping in Italy",
                 phName: "FULL NAME *", phEmail: "EMAIL *", phPhone: "PHONE *", phCity: "CITY AND POSTCODE *", phAddress: "FULL SHIPPING ADDRESS *", phNotes: "NOTES FOR THE COURIER (OPTIONAL)"
@@ -833,61 +831,36 @@
         document.getElementById('close-checkout-btn').onclick = () => checkoutOverlay.classList.add('opacity-0', 'pointer-events-none');
 
         // Il browser non invia email d'ordine: il server le invia solo dopo il webhook Stripe verificato.
-        async function pagaConStripe() {
+        function inviaOrdineWhatsApp() {
             const form = document.getElementById('checkout-form');
             if (!form.reportValidity()) return;
             if (carrello.length === 0) return mostraToast(t('cartEmpty'));
+
             const v = id => document.getElementById(id).value.trim();
-            const ordine = {
-                nome: v('cust-name'), email: v('cust-email'), telefono: v('cust-phone'),
-                citta: v('cust-city'), indirizzo: v('cust-address'), note: v('cust-notes'),
-                articoli: carrello.map(i => ({ id: i.id, quantita: i.quantita }))
-            };
-            const btn = document.getElementById('stripe-pay-btn');
-            btn.disabled = true;
-            btn.textContent = t('redirecting');
-            try {
-                const response = await fetch('/api/checkout-session', {
-                    method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(ordine)
-                });
-                const data = await response.json().catch(() => ({}));
-                if (!response.ok || !data.url) throw new Error(data.error || 'Checkout non disponibile');
-                window.location.href = data.url;
-            } catch (err) {
-                console.error('Checkout non avviato:', err);
-                mostraToast('Pagamento non disponibile: verifica la configurazione del server.');
-                btn.disabled = false;
-                btn.textContent = t('payCardBtn');
-            }
+            const nome = v('cust-name'), email = v('cust-email');
+            const telefono = v('cust-phone'), citta = v('cust-city');
+            const indirizzo = v('cust-address'), note = v('cust-notes');
+            const subtotale = carrello.reduce((sum, item) => sum + item.prezzo * item.quantita, 0);
+            const spedizione = COSTO_SPEDIZIONE;
+            const totale = subtotale + spedizione;
+            const righeProdotti = carrello.map(item =>
+                `- ${L(item, 'nome')} × ${item.quantita} — €${(item.prezzo * item.quantita).toFixed(2)}`
+            );
+            const messaggio = [
+                'NUOVO ORDINE — SOUK MARRAKECH', '',
+                'DATI CLIENTE',
+                `Nome e cognome: ${nome}`, `Email: ${email}`,
+                `Telefono: ${telefono}`, `Città e CAP: ${citta}`,
+                `Indirizzo: ${indirizzo}`,
+                note ? `Note per il corriere: ${note}` : '',
+                '', 'PRODOTTI', ...righeProdotti, '',
+                `Subtotale: €${subtotale.toFixed(2)}`,
+                `Spedizione: €${spedizione.toFixed(2)}`,
+                `TOTALE: €${totale.toFixed(2)}`
+            ].filter(Boolean).join('\n');
+            const url = 'https://wa.me/393391290800?text=' + encodeURIComponent(messaggio);
+            window.open(url, '_blank', 'noopener,noreferrer');
         }
-
-        // La pagina di ritorno mostra conferma solo dopo verifica server-side della sessione Stripe.
-        async function gestisciRitornoPagamento() {
-            const sessionId = new URLSearchParams(location.search).get('session_id');
-            if (!sessionId) return;
-            try {
-                const response = await fetch(`/api/session-status?session_id=${encodeURIComponent(sessionId)}`);
-                const data = await response.json().catch(() => ({}));
-                if (!response.ok || data.payment_status !== 'paid') {
-                    mostraToast('Il pagamento non risulta ancora confermato.');
-                    return;
-                }
-                carrello = [];
-                salvaCarrello();
-                history.replaceState(null, '', location.pathname + '#grazie');
-                naviga();
-            } catch (err) {
-                console.error('Verifica pagamento non disponibile:', err);
-                mostraToast('Pagamento in verifica. La conferma arriverà dopo il controllo del pagamento.');
-            }
-        }
-
-        window.addEventListener('pageshow', e => {
-            if (!e.persisted) return;
-            const b = document.getElementById('stripe-pay-btn');
-            b.disabled = false; b.textContent = t('payCardBtn');
-        });
 
         // Notifica leggera al posto dell'apertura forzata del carrello
         let toastTimer;
