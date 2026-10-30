@@ -917,9 +917,6 @@
         // Il menu mobile si chiude quando si sceglie una voce
         document.querySelectorAll('.drawer-nav-item').forEach(a => a.addEventListener('click', () => document.getElementById('close-drawer-btn').click()));
 
-        // Controlla l'eventuale ritorno da Stripe tramite il backend.
-        gestisciRitornoPagamento();
-
         // Dati strutturati schema.org/Product per Google
         function inserisciSchema() {
             const s = document.createElement('script');
