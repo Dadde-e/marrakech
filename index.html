@@ -200,8 +200,8 @@
                 <div class="p-4 bg-[#141312] border border-[#2A2725]">
                     <div id="modal-total-price" class="flex justify-between text-xs tracking-widest text-[#EAE6E1] font-serif"></div>
                 </div>
-                <button type="button" id="stripe-pay-btn" onclick="inviaOrdineWhatsApp()" data-i18n="payCardBtn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-luxuryDark font-semibold py-4 text-xs tracking-[0.2em] uppercase transition">
-                    PAGA ORA CON CARTA
+                <button type="button" id="whatsapp-order-btn" onclick="inviaOrdineWhatsApp()" data-i18n="payCardBtn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-luxuryDark font-semibold py-4 text-xs tracking-[0.2em] uppercase transition">
+                    INVIA ORDINE SU WHATSAPP
                 </button>
             </form>
         </div>
@@ -830,7 +830,7 @@
         };
         document.getElementById('close-checkout-btn').onclick = () => checkoutOverlay.classList.add('opacity-0', 'pointer-events-none');
 
-        // Il browser non invia email d'ordine: il server le invia solo dopo il webhook Stripe verificato.
+        // Prepara il riepilogo dell'ordine e lo apre in WhatsApp.
         function inviaOrdineWhatsApp() {
             const form = document.getElementById('checkout-form');
             if (!form.reportValidity()) return;
