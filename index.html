@@ -461,7 +461,7 @@
                 specCraft: "Lavorazione:",
                 specCraftVal: "100% Fatto a mano da maestri artigiani",
                 specShip: "Spedizioni:",
-                specShipVal: "Assicurata, €7,90 in Italia, in 3-5 giorni lavorativi",
+                specShipVal: "Costi e tempi da concordare",
                 heroTag: "LUSSO SILENZIOSO — MARRAKECH",
                 heroTitle: "Artigianato Autentico <br>& Ceramiche di Marrakech",
                 heroDesc: "Oggetti d'arredo scultorei, ceramiche e portacandele modellati a mano nel Tadelakt tradizionale dagli artigiani della Medina.",
@@ -481,7 +481,7 @@
                 trust1: "Scelto di persona nei souk della Medina", trust2: "Spedizione assicurata in 3-5 giorni lavorativi", trust3: "Assistenza diretta su WhatsApp",
                 shipNote: "Costi e tempi di spedizione da concordare su WhatsApp.",
                 footBlurb: "Artigianato marocchino scelto a mano nella Medina di Marrakech.", footShipTitle: "Spedizioni",
-                footShipText: "Spedizione assicurata in Italia a €7,90, consegna in 3-5 giorni lavorativi.", footContactTitle: "Contatti",
+                footShipText: "Costi e tempi di spedizione da concordare direttamente con noi.", footContactTitle: "Contatti",
                 rights: "© 2026 SOUK MARRAKECH. TUTTI I DIRITTI RISERVATI.",
                 visitDesc2: "Non lavoriamo con fornitori industriali anonimi: conosciamo gli artigiani che intrecciano le lanterne, lavorano la pelle e dipingono la ceramica a mano.",
                 igTag: "ESPERIENZE & VIAGGI", igBox: "Segui la pagina Instagram per vedere dal vivo la selezione di ogni oggetto nei souk!", igBtn: "GUARDA I RETROSCENA SU INSTAGRAM",
@@ -840,8 +840,7 @@
             const telefono = v('cust-phone'), citta = v('cust-city');
             const indirizzo = v('cust-address'), note = v('cust-notes');
             const subtotale = carrello.reduce((sum, item) => sum + item.prezzo * item.quantita, 0);
-            const spedizione = COSTO_SPEDIZIONE;
-            const totale = subtotale + spedizione;
+            const totale = subtotale;
             const righeProdotti = carrello.map(item =>
                 `- ${L(item, 'nome')} × ${item.quantita} — €${(item.prezzo * item.quantita).toFixed(2)}`
             );
