@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOUK MARRAKECH — Artigianato Autentico Marocchino</title>
+    <title>ALESIA ESCAPE MAROCCO — Artigianato Autentico Marocchino</title>
     <meta name="description" content="Candelieri, vasi e oggetti d'arredo in tadelakt e ceramica, fatti a mano dagli artigiani della Medina di Marrakech.">
-    <meta name="theme-color" content="#1A1817">
+    <meta name="theme-color" content="#FFFFFF">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="SOUK MARRAKECH — Artigianato Autentico Marocchino">
+    <meta property="og:title" content="ALESIA ESCAPE MAROCCO — Artigianato Autentico Marocchino">
     <meta property="og:description" content="Candelieri, vasi e oggetti d'arredo in tadelakt e ceramica, fatti a mano dagli artigiani della Medina di Marrakech.">
-    <!-- TODO: sostituisci con l'URL assoluto, es. https://tuodominio.it/img_homme.jpeg -->
     <meta property="og:image" content="./img_homme.jpeg">
+    <meta property="og:site_name" content="Alesia Escape Marocco">
     <meta property="og:locale" content="it_IT">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏺</text></svg>">
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="apple-touch-icon" href="./favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
@@ -36,32 +37,21 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts: Cinzel & Cormorant Garamond / Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        luxuryDark: '#1A1817',
-                        luxuryPanel: '#23201E',
-                        luxuryGold: '#C5A059',
-                        luxuryGoldHover: '#B38E47',
-                        sandBg: '#EAE6E1',
-                        sandLight: '#F5F3EF'
-                    },
-                    fontFamily: {
-                        serif: ['Cinzel', 'serif'],
-                        bodySerif: ['Cormorant Garamond', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif']
-                    }
+                    colors: { luxuryDark: '#2E2420', luxuryPanel: '#F8F3EE', luxuryGold: '#A95938', luxuryGoldHover: '#8E4930', ink: '#2E2420', panel: '#F8F3EE', line: '#E8DDD2' },
+                    fontFamily: { serif: ['Cormorant Garamond', 'serif'], bodySerif: ['Cormorant Garamond', 'serif'], sans: ['Jost', 'sans-serif'] }
                 }
             }
         }
     </script>
 
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #1A1817; color: #EAE6E1; }
+        body { font-family: 'Jost', sans-serif; background-color: #FFFFFF; color: #2E2420; }
         .font-cormorant { font-family: 'Cormorant Garamond', serif; }
         .card-shadow { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .card-shadow:hover { transform: translateY(-3px); }
@@ -70,17 +60,12 @@
         
         .placeholder-img {
             display: flex; align-items: center; justify-content: center;
-            background: #23201E; border: 1px solid #C5A059; color: #C5A059; font-size: 0.875rem;
+            background: #F8F3EE; border: 1px solid #A95938; color: #A95938; font-size: 0.875rem;
         }
         
-        .product-detail-kicker { display:inline-flex; align-items:center; gap:.55rem; border:1px solid rgba(197,160,89,.35); padding:.45rem .7rem; color:#C5A059; font-size:.65rem; letter-spacing:.16em; text-transform:uppercase; }
-        .product-detail-kicker:before { content:""; width:5px; height:5px; border-radius:50%; background:#C5A059; }
-        .product-benefit { border:1px solid #383330; background:linear-gradient(135deg,rgba(197,160,89,.08),rgba(35,32,30,.45)); padding:.85rem; }
-        .product-benefit i { color:#C5A059; margin-bottom:.45rem; }
-        .product-benefit span { display:block; font-size:.68rem; line-height:1.5; color:#D8D0C5; }
         .modal-scroll::-webkit-scrollbar { width: 4px; }
-        .modal-scroll::-webkit-scrollbar-track { background: #1A1817; }
-        .modal-scroll::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 2px; }
+        .modal-scroll::-webkit-scrollbar-track { background: #FFFFFF; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: #A95938; border-radius: 2px; }
 
         /* Animazione zoom lento per l'immagine Hero della Home */
         @keyframes heroZoom {
@@ -91,53 +76,58 @@
         .hero-zoom-bg {
             animation: heroZoom 28s infinite ease-in-out alternate;
         }
-        :focus-visible { outline: 2px solid #C5A059; outline-offset: 2px; }
+        :focus-visible { outline: 2px solid #A95938; outline-offset: 2px; }
         @media (prefers-reduced-motion: reduce) {
             .hero-zoom-bg { animation: none; }
             .card-shadow, .page-view { transition: none; }
         }
+        .product-benefit { border:1px solid #E8DDD2; background:linear-gradient(135deg,rgba(169,89,56,.08),rgba(248,243,238,.6)); padding:.85rem; }
+        .product-benefit i { color:#A95938; margin-bottom:.45rem; }
+        .product-benefit span { display:block; font-size:.68rem; line-height:1.5; color:#4A3F38; }
+        #site-header { background: transparent; color: #fff; transition: background-color .3s, color .3s; }
+        #site-header .brand-emblem { filter: brightness(0) invert(1); transition: filter .3s; }
+        #site-header.solid { background: rgba(255,255,255,.96); backdrop-filter: blur(10px); color: #2E2420; border-bottom: 1px solid #E8DDD2; }
+        #site-header.solid .brand-emblem { filter: none; }
+        #site-header.solid .brand-name { color: #A95938; }
+        #site-header .nav-link:hover { opacity: .7; }
+        .card-shadow:hover { box-shadow: 0 18px 40px -24px rgba(46,36,32,.4); }
+        h1 em { font-style: italic; font-weight: 300; }
     </style>
 </head>
-<body class="flex flex-col min-h-screen relative selection:bg-luxuryGold selection:text-luxuryDark">
+<body class="flex flex-col min-h-screen relative selection:bg-luxuryGold selection:text-white">
 
     <!-- TOP ANNOUNCEMENT BAR -->
-    <div class="bg-[#121110] text-[#A69E95] text-xs tracking-[0.25em] uppercase py-2 text-center border-b border-[#2A2725] font-medium z-50 relative">
+    <div class="bg-[#2A1E19] text-[#E9DCCF] text-xs tracking-[0.25em] uppercase py-2 text-center border-b border-line font-medium z-50 relative">
         <span data-i18n="topBar">100% ARTIGANATO MAROCCHINO SELEZIONATO A MANO NELLA MEDINA — EDIZIONI LIMITATE</span>
     </div>
 
     <!-- NAVBAR -->
-    <header class="sticky top-0 z-40 bg-[#1A1817]/95 backdrop-blur-md border-b border-[#2A2725]">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <header id="site-header" class="sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-6 h-24 grid grid-cols-[1fr_auto_1fr] items-center">
             <div class="flex items-center gap-8">
-                <button id="open-drawer-btn" class="lg:hidden text-[#EAE6E1] hover:text-luxuryGold transition">
-                    <i class="fa-solid fa-bars-staggered text-xl"></i>
-                </button>
-                <nav class="hidden lg:flex items-center gap-8 text-xs font-semibold tracking-[0.2em] text-[#C2BBB3]">
-                    <a href="#prodotti" data-i18n="navCol" class="hover:text-luxuryGold transition uppercase">COLLEZIONE</a>
-                    <a href="#chisiamo" data-i18n="navVisit" class="hover:text-luxuryGold transition uppercase">CHI SIAMO</a>
-                    <a href="#contatti" data-i18n="navContact" class="hover:text-luxuryGold transition uppercase">CONTATTI</a>
+                <button id="open-drawer-btn" class="lg:hidden p-1"><i class="fa-solid fa-bars-staggered text-xl"></i></button>
+                <nav class="hidden lg:flex items-center gap-8 text-[13px] font-medium tracking-[0.22em] uppercase">
+                    <a href="#prodotti" data-i18n="navCol" class="nav-link">COLLEZIONE</a>
+                    <a href="#chisiamo" data-i18n="navVisit" class="nav-link">CHI SIAMO</a>
                 </nav>
             </div>
-
-            <!-- BRAND LOGO -->
-            <a href="#home" class="flex flex-col items-center group">
-                <span class="font-serif text-xl sm:text-2xl font-normal tracking-[0.3em] text-[#EAE6E1] group-hover:text-luxuryGold transition">
-                    SOUK MARRAKECH
-                </span>
-                <span data-i18n="subTitle" class="text-[10px] tracking-[0.4em] text-luxuryGold uppercase mt-0.5">ARTIGIANATO AUTENTICO</span>
+            <a href="#home" class="flex flex-col items-center">
+                <img src="./logo-emblem.png" alt="" class="brand-emblem h-8 sm:h-9 w-auto mb-1.5">
+                <span class="brand-name font-serif text-xl sm:text-3xl font-normal tracking-[0.3em] sm:tracking-[0.38em] leading-none pl-[0.3em] sm:pl-[0.38em]">ALESIA</span>
+                <span class="text-[10px] tracking-[0.42em] mt-1.5 uppercase font-medium pl-[0.42em]">ESCAPE MAROCCO</span>
             </a>
-
-            <div class="flex items-center gap-6">
-                <!-- SELETTORE LINGUA (IT / EN) -->
-                <div class="flex items-center gap-1 text-xs font-semibold tracking-wider text-gray-400">
-                    <button id="lang-it-btn" onclick="cambiaLingua('it')" class="text-luxuryGold hover:underline px-1">IT</button>
+            <div class="flex items-center justify-end gap-3 sm:gap-6">
+                <nav class="hidden lg:block text-[13px] font-medium tracking-[0.22em] uppercase">
+                    <a href="#contatti" data-i18n="navContact" class="nav-link">CONTATTI</a>
+                </nav>
+                <div class="flex items-center gap-1 text-xs font-semibold tracking-wider">
+                    <button id="lang-it-btn" onclick="cambiaLingua('it')" class="underline underline-offset-4 px-1">IT</button>
                     <span>|</span>
-                    <button id="lang-en-btn" onclick="cambiaLingua('en')" class="hover:text-luxuryGold px-1">EN</button>
+                    <button id="lang-en-btn" onclick="cambiaLingua('en')" class="opacity-70 hover:opacity-100 px-1">EN</button>
                 </div>
-
-                <button id="open-cart-btn" class="relative text-[#EAE6E1] hover:text-luxuryGold transition p-1">
+                <button id="open-cart-btn" class="relative p-1">
                     <i class="fa-solid fa-bag-shopping text-lg"></i>
-                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-luxuryGold text-luxuryDark text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-luxuryGold text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
                 </button>
             </div>
         </div>
@@ -145,36 +135,36 @@
 
     <!-- DRAWER MENU MOBILE -->
     <div id="drawer-overlay" class="fixed inset-0 bg-black/80 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-    <aside id="drawer-menu" role="dialog" aria-modal="true" aria-label="Menu" class="fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-[#1A1817] z-50 -translate-x-full transition-transform duration-300 flex flex-col justify-between border-r border-[#2A2725]">
+    <aside id="drawer-menu" role="dialog" aria-modal="true" aria-label="Menu" class="fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-white z-50 -translate-x-full transition-transform duration-300 flex flex-col justify-between border-r border-line">
         <div class="p-8">
             <div class="flex items-center justify-between mb-12">
-                <span class="font-serif text-lg tracking-[0.2em] text-luxuryGold">SOUK MARRAKECH</span>
-                <button id="close-drawer-btn" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+                <span class="font-serif text-base tracking-[0.18em] text-luxuryGold">ALESIA ESCAPE MAROCCO</span>
+                <button id="close-drawer-btn" class="text-[#6E625A] hover:text-ink"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             <nav class="space-y-6 text-xs tracking-[0.2em] uppercase font-medium">
-                <a href="#home" data-i18n="navHome" class="drawer-nav-item block text-[#EAE6E1] hover:text-luxuryGold transition">HOME</a>
-                <a href="#prodotti" data-i18n="navCol" class="drawer-nav-item block text-[#EAE6E1] hover:text-luxuryGold transition">COLLEZIONE</a>
-                <a href="#chisiamo" data-i18n="navVisit" class="drawer-nav-item block text-[#EAE6E1] hover:text-luxuryGold transition">CHI SIAMO</a>
-                <a href="#contatti" data-i18n="navContact" class="drawer-nav-item block text-[#EAE6E1] hover:text-luxuryGold transition">CONTATTI</a>
+                <a href="#home" data-i18n="navHome" class="drawer-nav-item block text-ink hover:text-luxuryGold transition">HOME</a>
+                <a href="#prodotti" data-i18n="navCol" class="drawer-nav-item block text-ink hover:text-luxuryGold transition">COLLEZIONE</a>
+                <a href="#chisiamo" data-i18n="navVisit" class="drawer-nav-item block text-ink hover:text-luxuryGold transition">CHI SIAMO</a>
+                <a href="#contatti" data-i18n="navContact" class="drawer-nav-item block text-ink hover:text-luxuryGold transition">CONTATTI</a>
             </nav>
         </div>
     </aside>
 
     <!-- CARRELLO DRAWER -->
     <div id="cart-overlay" class="fixed inset-0 bg-black/80 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-    <aside id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" class="fixed top-0 right-0 h-full w-96 max-w-[90vw] bg-[#1A1817] z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between border-l border-[#2A2725]">
-        <div class="p-6 border-b border-[#2A2725] flex items-center justify-between">
-            <h3 id="cart-title" data-i18n="cartTitle" class="font-serif text-sm tracking-[0.2em] text-[#EAE6E1] uppercase">IL TUO CARRELLO</h3>
-            <button id="close-cart-btn" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+    <aside id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" class="fixed top-0 right-0 h-full w-96 max-w-[90vw] bg-white z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between border-l border-line">
+        <div class="p-6 border-b border-line flex items-center justify-between">
+            <h3 id="cart-title" data-i18n="cartTitle" class="font-serif text-sm tracking-[0.2em] text-ink uppercase">IL TUO CARRELLO</h3>
+            <button id="close-cart-btn" class="text-[#6E625A] hover:text-ink"><i class="fa-solid fa-xmark text-lg"></i></button>
         </div>
         <div id="cart-items-container" class="p-6 overflow-y-auto flex-grow space-y-4"></div>
-        <div class="p-6 border-t border-[#2A2725] bg-[#141312] space-y-4">
-            <div class="flex justify-between items-center text-xs tracking-[0.15em] text-[#EAE6E1] uppercase">
+        <div class="p-6 border-t border-line bg-panel space-y-4">
+            <div class="flex justify-between items-center text-xs tracking-[0.15em] text-ink uppercase">
                 <span data-i18n="cartTotal">TOTALE ORDINE:</span>
                 <span id="cart-total-price" class="font-serif text-base text-luxuryGold">€0.00</span>
             </div>
-            <p data-i18n="shipNote" class="text-xs text-gray-400 font-light">Costi e tempi di spedizione da concordare su WhatsApp.</p>
-            <button id="open-checkout-btn" data-i18n="checkoutBtn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-luxuryDark font-semibold py-3.5 px-4 text-xs tracking-[0.2em] uppercase transition">
+            <p data-i18n="shipNote" class="text-xs text-[#6E625A] font-light">Costi e tempi di spedizione da concordare su WhatsApp.</p>
+            <button id="open-checkout-btn" data-i18n="checkoutBtn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-white font-semibold py-3.5 px-4 text-xs tracking-[0.2em] uppercase transition">
                 PROCEDI ALLA CASSA
             </button>
         </div>
@@ -182,25 +172,25 @@
 
     <!-- MODALE CHECKOUT -->
     <div id="checkout-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="checkout-title" class="fixed inset-0 bg-black/80 z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
-        <div class="bg-[#1A1817] border border-[#2A2725] max-w-xl w-full max-h-[90vh] overflow-y-auto p-8 relative">
-            <button id="close-checkout-btn" class="absolute top-6 right-6 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            <h3 id="checkout-title" data-i18n="checkoutTitle" class="font-serif text-xl tracking-[0.2em] text-[#EAE6E1] uppercase mb-2">DATI DI SPEDIZIONE</h3>
-            <p data-i18n="checkoutDesc" class="text-xs text-gray-400 mb-6 font-light">Inserisci l'indirizzo per completare l'ordine.</p>
+        <div class="bg-white border border-line max-w-xl w-full max-h-[90vh] overflow-y-auto p-8 relative">
+            <button id="close-checkout-btn" class="absolute top-6 right-6 text-[#6E625A] hover:text-ink"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 id="checkout-title" data-i18n="checkoutTitle" class="font-serif text-xl tracking-[0.2em] text-ink uppercase mb-2">DATI DI SPEDIZIONE</h3>
+            <p data-i18n="checkoutDesc" class="text-xs text-[#6E625A] mb-6 font-light">Inserisci l'indirizzo per completare l'ordine.</p>
             <form id="checkout-form" class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" id="cust-name" autocomplete="name" data-i18n-ph="phName" required placeholder="NOME E COGNOME *" class="w-full bg-[#23201E] border border-[#383330] p-3 text-xs text-[#EAE6E1] placeholder-gray-500 focus:border-luxuryGold focus:outline-none">
-                    <input type="email" id="cust-email" autocomplete="email" data-i18n-ph="phEmail" required placeholder="EMAIL *" class="w-full bg-[#23201E] border border-[#383330] p-3 text-xs text-[#EAE6E1] placeholder-gray-500 focus:border-luxuryGold focus:outline-none">
+                    <input type="text" id="cust-name" autocomplete="name" data-i18n-ph="phName" required placeholder="NOME E COGNOME *" class="w-full bg-panel border border-line p-3 text-xs text-ink placeholder-[#9A8E85] focus:border-luxuryGold focus:outline-none">
+                    <input type="email" id="cust-email" autocomplete="email" data-i18n-ph="phEmail" required placeholder="EMAIL *" class="w-full bg-panel border border-line p-3 text-xs text-ink placeholder-[#9A8E85] focus:border-luxuryGold focus:outline-none">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="tel" id="cust-phone" autocomplete="tel" data-i18n-ph="phPhone" required placeholder="TELEFONO *" class="w-full bg-[#23201E] border border-[#383330] p-3 text-xs text-[#EAE6E1] placeholder-gray-500 focus:border-luxuryGold focus:outline-none">
-                    <input type="text" id="cust-city" autocomplete="address-level2" data-i18n-ph="phCity" required placeholder="CITTÀ E CAP *" class="w-full bg-[#23201E] border border-[#383330] p-3 text-xs text-[#EAE6E1] placeholder-gray-500 focus:border-luxuryGold focus:outline-none">
+                    <input type="tel" id="cust-phone" autocomplete="tel" data-i18n-ph="phPhone" required placeholder="TELEFONO *" class="w-full bg-panel border border-line p-3 text-xs text-ink placeholder-[#9A8E85] focus:border-luxuryGold focus:outline-none">
+                    <input type="text" id="cust-city" autocomplete="address-level2" data-i18n-ph="phCity" required placeholder="CITTÀ E CAP *" class="w-full bg-panel border border-line p-3 text-xs text-ink placeholder-[#9A8E85] focus:border-luxuryGold focus:outline-none">
                 </div>
-                <input type="text" id="cust-address" autocomplete="street-address" data-i18n-ph="phAddress" required placeholder="INDIRIZZO DI SPEDIZIONE COMPLETO *" class="w-full bg-[#23201E] border border-[#383330] p-3 text-xs text-[#EAE6E1] placeholder-gray-500 focus:border-luxuryGold focus:outline-none">
-                <textarea id="cust-notes" autocomplete="off" data-i18n-ph="phNotes" rows="2" placeholder="NOTE PER IL CORRIERE (OPZIONALE)" class="w-full bg-[#23201E] border border-[#383330] p-3 text-xs text-[#EAE6E1] placeholder-gray-500 focus:border-luxuryGold focus:outline-none"></textarea>
-                <div class="p-4 bg-[#141312] border border-[#2A2725]">
-                    <div id="modal-total-price" class="flex justify-between text-xs tracking-widest text-[#EAE6E1] font-serif"></div>
+                <input type="text" id="cust-address" autocomplete="street-address" data-i18n-ph="phAddress" required placeholder="INDIRIZZO DI SPEDIZIONE COMPLETO *" class="w-full bg-panel border border-line p-3 text-xs text-ink placeholder-[#9A8E85] focus:border-luxuryGold focus:outline-none">
+                <textarea id="cust-notes" autocomplete="off" data-i18n-ph="phNotes" rows="2" placeholder="NOTE PER IL CORRIERE (OPZIONALE)" class="w-full bg-panel border border-line p-3 text-xs text-ink placeholder-[#9A8E85] focus:border-luxuryGold focus:outline-none"></textarea>
+                <div class="p-4 bg-panel border border-line">
+                    <div id="modal-total-price" class="flex justify-between text-xs tracking-widest text-ink font-serif"></div>
                 </div>
-                <button type="button" id="whatsapp-order-btn" data-i18n="payCardBtn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-luxuryDark font-semibold py-4 text-xs tracking-[0.2em] uppercase transition">
+                <button type="button" id="whatsapp-order-btn" data-i18n="payCardBtn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-white font-semibold py-4 text-xs tracking-[0.2em] uppercase transition">
                     INVIA ORDINE SU WHATSAPP
                 </button>
             </form>
@@ -209,67 +199,70 @@
 
     <!-- MODALE DETTAGLIO PRODOTTO (POPUP STILE ZARIB) -->
     <div id="product-detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-product-title" class="fixed inset-0 bg-black/85 z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-2 sm:p-6">
-        <div class="bg-[#1A1817] border border-[#2A2725] max-w-5xl w-full max-h-[92vh] overflow-hidden relative flex flex-col lg:flex-row shadow-2xl">
-            <button id="close-product-modal-btn" class="absolute top-4 right-4 z-20 text-gray-400 hover:text-white bg-[#1A1817]/80 w-8 h-8 rounded-full flex items-center justify-center border border-[#383330] transition">
+        <div class="bg-white border border-line max-w-5xl w-full max-h-[92vh] overflow-hidden relative flex flex-col lg:flex-row shadow-2xl">
+            <button id="close-product-modal-btn" class="absolute top-4 right-4 z-20 text-[#6E625A] hover:text-ink bg-white/80 w-8 h-8 rounded-full flex items-center justify-center border border-line transition">
                 <i class="fa-solid fa-xmark text-sm"></i>
             </button>
 
             <!-- LATO SINISTRO: IMMAGINE -->
-            <div class="lg:w-1/2 bg-[#EAE6E1] p-6 flex flex-col justify-between relative min-h-[320px] lg:min-h-[500px]">
-                <div class="absolute top-4 left-4 text-xs tracking-[0.2em] bg-[#1A1817]/10 text-[#1A1817] px-2.5 py-1 font-semibold uppercase" id="modal-counter">1 / 1</div><div id="modal-thumbs" class="absolute bottom-3 left-0 right-0 flex justify-center gap-2"></div>
+            <div class="lg:w-1/2 bg-[#F4EEE7] p-6 flex flex-col justify-between relative min-h-[320px] lg:min-h-[500px]">
+                <div class="absolute top-4 left-4 text-xs tracking-[0.2em] bg-ink/10 text-ink px-2.5 py-1 font-semibold uppercase" id="modal-counter">1 / 1</div><div id="modal-thumbs" class="absolute bottom-3 left-0 right-0 flex justify-center gap-2"></div>
                 <div class="flex-grow flex items-center justify-center p-4">
                     <img id="modal-product-img" src="" alt="" class="max-h-[380px] w-auto object-contain drop-shadow-md">
                 </div>
             </div>
 
             <!-- LATO DESTRO: DETTAGLI -->
-            <div class="lg:w-1/2 p-6 sm:p-10 modal-scroll overflow-y-auto flex flex-col justify-between bg-[#1A1817]">
+            <div class="lg:w-1/2 p-6 sm:p-10 modal-scroll overflow-y-auto flex flex-col justify-between bg-white">
                 <div class="space-y-6">
-                    <span class="product-detail-kicker" id="modal-product-category">COLLEZIONE ARTIGIANALE</span>
+                    <span id="modal-product-category" class="text-xs tracking-[0.3em] text-luxuryGold uppercase font-semibold">
+                        COLLEZIONE ARTIGIANALE
+                    </span>
                     
-                    <h2 id="modal-product-title" class="font-cormorant text-3xl sm:text-4xl font-normal text-[#EAE6E1] tracking-wide leading-tight">
+                    <h2 id="modal-product-title" class="font-cormorant text-3xl sm:text-4xl font-light text-ink tracking-wide leading-tight">
                         --
                     </h2>
 
-                    <div id="modal-product-price" class="font-serif text-xl text-luxuryGold tracking-widest border-b border-[#2A2725] pb-4">
+                    <div id="modal-product-price" class="font-serif text-xl text-luxuryGold tracking-widest border-b border-line pb-4">
                         €0.00
                     </div>
 
-                    <p id="modal-product-description" class="text-sm leading-7 text-gray-300 font-light">--</p>
-
+                    <p id="modal-product-description" class="text-sm leading-relaxed text-[#4A3F38] font-light">
+                        --
+                    </p>
                     <div class="grid grid-cols-3 gap-2" aria-label="Caratteristiche del prodotto">
                         <div class="product-benefit"><i class="fa-solid fa-hands" aria-hidden="true"></i><span data-i18n="detailHandmade">Lavorazione artigianale</span></div>
                         <div class="product-benefit"><i class="fa-solid fa-house" aria-hidden="true"></i><span data-i18n="detailDecor">Design d’arredo</span></div>
                         <div class="product-benefit"><i class="fa-solid fa-box" aria-hidden="true"></i><span data-i18n="detailShipping">Spedizione in Italia</span></div>
                     </div>
 
-                    <div class="border-t border-b border-[#2A2725] py-4 space-y-3 text-xs text-gray-400 font-light">
-                        <div class="flex gap-3"><span data-i18n="specType" class="w-32 shrink-0 text-gray-400 uppercase tracking-wider">Tipo:</span> <span id="modal-spec-type" class="text-gray-200">Artigianato di Marrakech</span></div>
-                        <div id="modal-spec-mat-row" class="hidden gap-3"><span data-i18n="specMat" class="w-32 shrink-0 text-gray-400 uppercase tracking-wider">Materiale:</span> <span id="modal-spec-mat" class="text-gray-200"></span></div>
-                        <div id="modal-spec-dim-row" class="hidden gap-3"><span data-i18n="specDim" class="w-32 shrink-0 text-gray-400 uppercase tracking-wider">Dimensioni:</span> <span id="modal-spec-dim" class="text-gray-200"></span></div>
-                        <div class="flex"><span data-i18n="specOrig" class="w-32 text-gray-400 uppercase tracking-wider">Origine:</span> <span data-i18n="specOrigVal" class="text-gray-200">Medina di Marrakech, Marocco</span></div>
-                        <div class="flex"><span data-i18n="specCraft" class="w-32 text-gray-400 uppercase tracking-wider">Lavorazione:</span> <span data-i18n="specCraftVal" class="text-gray-200">100% Fatto a mano da maestri artigiani</span></div>
-                        <div class="flex"><span data-i18n="specShip" class="w-32 text-gray-400 uppercase tracking-wider">Spedizioni:</span> <span data-i18n="specShipVal" class="text-gray-200">Costi e tempi da concordare</span></div>
+                    <div class="border-t border-b border-line py-4 space-y-3 text-xs text-[#6E625A] font-light">
+                        <div class="flex gap-3"><span data-i18n="specType" class="w-32 shrink-0 text-[#6E625A] uppercase tracking-wider">Tipo:</span> <span id="modal-spec-type" class="text-ink">Artigianato di Marrakech</span></div>
+                        <div id="modal-spec-mat-row" class="hidden gap-3"><span data-i18n="specMat" class="w-32 shrink-0 text-[#6E625A] uppercase tracking-wider">Materiale:</span> <span id="modal-spec-mat" class="text-ink"></span></div>
+                        <div id="modal-spec-dim-row" class="hidden gap-3"><span data-i18n="specDim" class="w-32 shrink-0 text-[#6E625A] uppercase tracking-wider">Dimensioni:</span> <span id="modal-spec-dim" class="text-ink"></span></div>
+                        <div class="flex"><span data-i18n="specOrig" class="w-32 text-[#6E625A] uppercase tracking-wider">Origine:</span> <span data-i18n="specOrigVal" class="text-ink">Medina di Marrakech, Marocco</span></div>
+                        <div class="flex"><span data-i18n="specCraft" class="w-32 text-[#6E625A] uppercase tracking-wider">Lavorazione:</span> <span data-i18n="specCraftVal" class="text-ink">100% Fatto a mano da maestri artigiani</span></div>
+                        <div class="flex"><span data-i18n="specShip" class="w-32 text-[#6E625A] uppercase tracking-wider">Spedizioni:</span> <span data-i18n="specShipVal" class="text-ink">Costi e tempi da concordare</span></div>
                     </div>
 
-                    <p data-i18n="uniqueNote" class="text-xs italic leading-relaxed text-gray-400 border-l-2 border-luxuryGold/50 pl-3">
+                    <p data-i18n="uniqueNote" class="text-xs italic leading-relaxed text-[#6E625A] border-l-2 border-luxuryGold/50 pl-3">
                         Ogni pezzo è unico. Le piccole imperfezioni testimoniano la lavorazione interamente manuale dell'oggetto.
                     </p>
-                    <p id="modal-stock-note" class="text-[11px] tracking-wide text-luxuryGold"><i class="fa-solid fa-box-open mr-2" aria-hidden="true"></i>Massimo 2 pezzi per prodotto per ordine.</p>
+                    <p id="modal-stock-note" class="text-[11px] tracking-wide text-luxuryGold"><i class="fa-solid fa-box-open mr-2" aria-hidden="true"></i><span data-i18n="stockNote">Massimo 2 pezzi per prodotto per ordine.</span></p>
                 </div>
 
                 <div class="pt-8 space-y-3">
-                    <button id="modal-add-to-cart-btn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-luxuryDark font-semibold py-4 px-6 text-xs tracking-[0.2em] uppercase transition flex items-center justify-center gap-2">
+                    <button id="modal-add-to-cart-btn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-white font-semibold py-4 px-6 text-xs tracking-[0.2em] uppercase transition flex items-center justify-center gap-2">
                         <i class="fa-solid fa-bag-shopping"></i>
                         <span data-i18n="addToCart">AGGIUNGI AL CARRELLO</span>
                     </button>
                     
                     <div class="grid grid-cols-2 gap-3">
-                        <a id="modal-whatsapp-btn" href="https://wa.me/393391290800" target="_blank" class="border border-[#383330] hover:border-luxuryGold text-gray-300 hover:text-white py-3 text-xs tracking-[0.15em] uppercase transition text-center flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-emerald-500"></i>
+                        <a id="modal-whatsapp-btn" href="https://wa.me/393391290800" target="_blank" class="border border-line hover:border-luxuryGold text-[#4A3F38] hover:text-ink py-3 text-xs tracking-[0.15em] uppercase transition text-center flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i>
                             <span data-i18n="waInfo">INFO WHATSAPP</span>
                         </a>
-                        <a href="tel:+393391290800" class="border border-[#383330] hover:border-luxuryGold text-gray-300 hover:text-white py-3 text-xs tracking-[0.15em] uppercase transition text-center flex items-center justify-center gap-2">
+                        <a href="tel:+393391290800" class="border border-line hover:border-luxuryGold text-[#4A3F38] hover:text-ink py-3 text-xs tracking-[0.15em] uppercase transition text-center flex items-center justify-center gap-2">
                             <i class="fa-solid fa-phone"></i>
                             <span data-i18n="callUs">CHIAMACI</span>
                         </a>
@@ -283,41 +276,34 @@
     <main class="flex-grow">
         <!-- 1. HOME PAGE VIEW -->
         <section id="view-home" class="page-view active">
-            <!-- HERO BANNER CON IMMAGINE IN MOVIMENTO (ZOOM LENTO) -->
-            <div class="relative min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center text-center px-6 py-20 overflow-hidden">
+            <!-- HERO -->
+            <div class="relative min-h-[92vh] -mt-24 pt-24 flex items-center overflow-hidden px-6">
                 <img src="./img_homme.jpeg" alt="" fetchpriority="high" decoding="async" class="absolute inset-0 w-full h-full object-cover hero-zoom-bg -z-10">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#1A1817]/70 via-[#1A1817]/60 to-[#1A1817] -z-10"></div>
-
-                <div class="max-w-4xl mx-auto space-y-8 z-10">
-                    <span data-i18n="heroTag" class="text-xs tracking-[0.4em] uppercase text-luxuryGold font-medium">LUSSO SILENZIOSO — MARRAKECH</span>
-                    <h1 data-i18n="heroTitle" class="font-cormorant text-4xl sm:text-6xl lg:text-7xl font-normal text-[#EAE6E1] leading-tight tracking-wide">
-                        Artigianato Autentico <br>& Ceramiche di Marrakech
-                    </h1>
-                    <p data-i18n="heroDesc" class="text-xs sm:text-sm text-gray-300 max-w-xl mx-auto font-light tracking-wide leading-relaxed">
-                        Oggetti d'arredo scultorei, ceramiche e portacandele modellati a mano nel Tadelakt tradizionale dagli artigiani della Medina.
-                    </p>
-                    <div class="pt-6">
-                        <a href="#prodotti" data-i18n="shopBtn" class="inline-block border border-luxuryGold text-luxuryGold hover:bg-luxuryGold hover:text-luxuryDark font-medium text-xs tracking-[0.25em] uppercase px-10 py-4 transition">
-                            ESPLORA LA COLLEZIONE
-                        </a>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#1F1612]/75 via-[#1F1612]/35 to-[#1F1612]/10 -z-10"></div>
+                <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/45 to-transparent -z-10"></div>
+                <div class="max-w-7xl mx-auto w-full">
+                    <div class="max-w-3xl space-y-7 text-white">
+                        <div class="flex items-center gap-4"><span class="block w-10 h-px bg-[#F0D9C8]"></span><span data-i18n="heroTag" class="text-xs tracking-[0.3em] uppercase text-[#F0D9C8]">LUSSO SILENZIOSO — MARRAKECH</span></div>
+                        <h1 data-i18n="heroTitle" class="font-cormorant font-light text-5xl sm:text-7xl lg:text-8xl leading-[1.02]">Artigianato Autentico <br><em>& Ceramiche di Marrakech</em></h1>
+                        <p data-i18n="heroDesc" class="text-sm sm:text-base text-white/85 max-w-xl font-light leading-relaxed">Oggetti d'arredo scultorei, ceramiche e portacandele modellati a mano nel Tadelakt tradizionale dagli artigiani della Medina.</p>
+                        <div class="pt-4"><a href="#prodotti" data-i18n="shopBtn" class="inline-block border border-white text-white hover:bg-white hover:text-ink text-xs tracking-[0.3em] uppercase px-10 py-4 transition">ESPLORA LA COLLEZIONE</a></div>
                     </div>
                 </div>
             </div>
 
-            <ul class="border-y border-[#2A2725] bg-[#141312] max-w-none px-6 py-8 grid gap-6 sm:grid-cols-3 text-center">
-                <li class="space-y-2"><i class="fa-solid fa-hand-holding-heart text-luxuryGold text-xl" aria-hidden="true"></i><p data-i18n="trust1" class="text-sm text-gray-300 font-light">Scelto di persona nei souk della Medina</p></li>
-                <li class="space-y-2"><i class="fa-solid fa-truck-fast text-luxuryGold text-xl" aria-hidden="true"></i><p data-i18n="trust2" class="text-sm text-gray-300 font-light">Spedizione assicurata in 3-5 giorni lavorativi</p></li>
-                <li class="space-y-2"><i class="fa-solid fa-comments text-luxuryGold text-xl" aria-hidden="true"></i><p data-i18n="trust3" class="text-sm text-gray-300 font-light">Assistenza diretta su WhatsApp</p></li>
+            <ul class="border-y border-line bg-panel max-w-none px-6 py-8 grid gap-6 sm:grid-cols-2 text-center">
+                <li class="space-y-2"><i class="fa-solid fa-hand-holding-heart text-luxuryGold text-xl" aria-hidden="true"></i><p data-i18n="trust1" class="text-sm text-[#4A3F38] font-light">Scelto di persona nei souk della Medina</p></li>
+                <li class="space-y-2"><i class="fa-solid fa-comments text-luxuryGold text-xl" aria-hidden="true"></i><p data-i18n="trust3" class="text-sm text-[#4A3F38] font-light">Assistenza diretta su WhatsApp</p></li>
             </ul>
 
             <!-- PRODOTTI IN EVIDENZA -->
             <div class="max-w-7xl mx-auto px-6 py-20">
-                <div class="flex justify-between items-end mb-12 border-b border-[#2A2725] pb-6">
+                <div class="flex justify-between items-end mb-12 border-b border-line pb-6">
                     <div>
                         <span data-i18n="featuredTag" class="text-xs tracking-[0.3em] uppercase text-luxuryGold">SELEZIONE ESCLUSIVA</span>
-                        <h2 data-i18n="featuredTitle" class="font-cormorant text-3xl font-normal text-[#EAE6E1] mt-1">Prodotti in Evidenza</h2>
+                        <h2 data-i18n="featuredTitle" class="font-cormorant text-3xl font-light text-ink mt-1">Prodotti in Evidenza</h2>
                     </div>
-                    <a href="#prodotti" data-i18n="seeAll" class="text-xs tracking-[0.2em] text-gray-400 hover:text-luxuryGold uppercase transition">
+                    <a href="#prodotti" data-i18n="seeAll" class="text-xs tracking-[0.2em] text-[#6E625A] hover:text-luxuryGold uppercase transition">
                         VEDI TUTTI &rarr;
                     </a>
                 </div>
@@ -327,46 +313,46 @@
 
         <section id="view-grazie" class="page-view max-w-2xl mx-auto px-6 py-24 text-center space-y-6">
             <i class="fa-solid fa-circle-check text-4xl text-luxuryGold" aria-hidden="true"></i>
-            <h1 data-i18n="thanksTitle" class="font-cormorant text-4xl text-[#EAE6E1]">Ordine ricevuto</h1>
-            <p data-i18n="thanksText" class="text-sm text-gray-300 font-light leading-relaxed">Grazie! Riceverai la conferma dell'ordine via email. Per qualsiasi dubbio scrivici su WhatsApp.</p>
-            <a href="#prodotti" data-i18n="thanksBtn" class="inline-block border border-luxuryGold text-luxuryGold hover:bg-luxuryGold hover:text-luxuryDark text-xs tracking-[0.25em] uppercase px-8 py-3.5 transition">CONTINUA A SCEGLIERE</a>
+            <h1 data-i18n="thanksTitle" class="font-cormorant text-4xl text-ink">Ordine ricevuto</h1>
+            <p data-i18n="thanksText" class="text-sm text-[#4A3F38] font-light leading-relaxed">Per completare l’ordine, invia il messaggio preparato su WhatsApp. Ti ricontatteremo per confermare i dettagli.</p>
+            <a href="#prodotti" data-i18n="thanksBtn" class="inline-block border border-luxuryGold text-luxuryGold hover:bg-luxuryGold hover:text-white text-xs tracking-[0.25em] uppercase px-8 py-3.5 transition">CONTINUA A SCEGLIERE</a>
         </section>
 
         <!-- 2. CATALOGO COMPLETO -->
         <section id="view-prodotti" class="page-view max-w-7xl mx-auto px-6 py-16">
             <div class="text-center max-w-2xl mx-auto mb-16">
                 <span data-i18n="catalogTag" class="text-xs tracking-[0.3em] uppercase text-luxuryGold">COLLEZIONE FATTA A MANO</span>
-                <h1 data-i18n="catalogTitle" class="font-cormorant text-4xl font-normal text-[#EAE6E1] mt-2">Tutti i Prodotti</h1>
+                <h1 data-i18n="catalogTitle" class="font-cormorant text-4xl font-light text-ink mt-2">Tutti i Prodotti</h1>
                 <div class="w-12 h-0.5 bg-luxuryGold mx-auto mt-4"></div>
             </div>
             <div id="full-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
         </section>
 
-        <!-- 3. CHI SIAMO (RIPRISTINATO CON IMMAGINE E TESTO ORIGINALE) -->
+        <!-- 3. CHI SIAMO -->
         <section id="view-chisiamo" class="page-view max-w-7xl mx-auto px-6 py-20">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="relative">
-                    <img src="./img_home.png" alt="Medina e paesaggi del Marocco" onerror="mostraFallbackImmagine(this)" class="rounded-2xl border border-[#2A2725] shadow-2xl w-full h-96 object-cover">
-                    <div class="absolute -bottom-6 -right-2 sm:right-6 bg-[#23201E] border border-luxuryGold/40 p-5 rounded-xl shadow-lg max-w-xs">
+                    <img src="./img_home.png" alt="Medina e paesaggi del Marocco" onerror="mostraFallbackImmagine(this)" class="rounded-2xl border border-line shadow-2xl w-full h-96 object-cover">
+                    <div class="absolute -bottom-6 -right-2 sm:right-6 bg-panel border border-luxuryGold/40 p-5 rounded-xl shadow-lg max-w-xs">
                         <div class="flex items-center gap-3 text-luxuryGold font-bold text-xs tracking-wider uppercase">
                             <i class="fa-brands fa-instagram text-xl"></i>
                             <span data-i18n="igTag">ESPERIENZE & VIAGGI</span>
                         </div>
-                        <p class="text-xs text-gray-400 mt-1 font-light" data-i18n="igBox">Segui la pagina Instagram per vedere dal vivo la selezione di ogni oggetto nei souk!</p>
+                        <p class="text-xs text-[#6E625A] mt-1 font-light" data-i18n="igBox">Segui la pagina Instagram per vedere dal vivo la selezione di ogni oggetto nei souk!</p>
                     </div>
                 </div>
 
                 <div class="space-y-6">
                     <span data-i18n="visitTag" class="text-xs tracking-[0.3em] uppercase text-luxuryGold">LA NOSTRA STORIA</span>
-                    <h1 data-i18n="visitTitle" class="font-cormorant text-4xl font-normal text-[#EAE6E1]">Passione per l'Artigianato Autentico</h1>
-                    <p data-i18n="visitDesc" class="text-xs sm:text-sm text-gray-300 font-light leading-relaxed">
+                    <h1 data-i18n="visitTitle" class="font-cormorant text-4xl font-light text-ink">Passione per l'Artigianato Autentico</h1>
+                    <p data-i18n="visitDesc" class="text-xs sm:text-sm text-[#4A3F38] font-light leading-relaxed">
                         Questo e-commerce nasce dall'amore per la cultura e la maestria artigianale di <strong>Marrakech</strong>. Ogni prodotto a catalogo viene scelto personalmente esplorando i vicoli e i souk storici della Medina.
                     </p>
-                    <p class="text-xs sm:text-sm text-gray-300 font-light leading-relaxed" data-i18n="visitDesc2">
+                    <p class="text-xs sm:text-sm text-[#4A3F38] font-light leading-relaxed" data-i18n="visitDesc2">
                         Non lavoriamo con fornitori industriali anonimi: conosciamo gli artigiani che intrecciano le lanterne, lavorano la pelle e dipingono la ceramica a mano.
                     </p>
                     <div class="pt-4">
-                        <a href="https://www.instagram.com/alesiamarrakechescape" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 border border-luxuryGold/50 text-luxuryGold hover:bg-luxuryGold hover:text-luxuryDark px-6 py-3.5 text-xs tracking-[0.15em] uppercase transition">
+                        <a href="https://www.instagram.com/alesiamarrakechescape" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 border border-luxuryGold/50 text-luxuryGold hover:bg-luxuryGold hover:text-white px-6 py-3.5 text-xs tracking-[0.15em] uppercase transition">
                             <i class="fa-brands fa-instagram text-base"></i>
                             <span data-i18n="igBtn">GUARDA I RETROSCENA SU INSTAGRAM</span>
                         </a>
@@ -378,30 +364,30 @@
         <!-- 4. CONTATTI -->
         <section id="view-contatti" class="page-view max-w-4xl mx-auto px-6 py-20 text-center space-y-8">
             <span data-i18n="contactTag" class="text-xs tracking-[0.3em] uppercase text-luxuryGold">ASSISTENZA & INFORMAZIONI</span>
-            <h1 data-i18n="contactTitle" class="font-cormorant text-4xl font-normal text-[#EAE6E1]">Hai Domande o Richieste Particolari?</h1>
-            <p class="text-xs sm:text-sm text-gray-400 font-light max-w-md mx-auto" data-i18n="contactText">
+            <h1 data-i18n="contactTitle" class="font-cormorant text-4xl font-light text-ink">Hai Domande o Richieste Particolari?</h1>
+            <p class="text-xs sm:text-sm text-[#6E625A] font-light max-w-md mx-auto" data-i18n="contactText">
                 Vuoi un prodotto su misura o desideri informazioni sui tempi di spedizione? Scrivici direttamente.
             </p>
 
             <div class="grid sm:grid-cols-2 gap-6 pt-6 text-left">
-                <div class="p-6 bg-[#23201E] border border-[#2A2725] flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-full bg-emerald-950/60 text-emerald-400 flex items-center justify-center text-lg shrink-0 border border-emerald-800/40">
+                <div class="p-6 bg-panel border border-line flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center text-lg shrink-0 border border-emerald-200">
                         <i class="fa-brands fa-whatsapp"></i>
                     </div>
                     <div>
-                        <h4 class="font-medium text-xs text-[#EAE6E1] tracking-wider uppercase" data-i18n="ctWa">WhatsApp Diretto</h4>
-                        <p class="text-xs text-gray-400 mt-1" data-i18n="ctWaSub">Rispondiamo in tempi rapidi</p>
-                        <a href="https://wa.me/393391290800" target="_blank" rel="noopener noreferrer" class="inline-block font-bold text-xs text-emerald-400 mt-2 hover:underline">+39 339 129 0800</a>
+                        <h4 class="font-medium text-xs text-ink tracking-wider uppercase" data-i18n="ctWa">WhatsApp Diretto</h4>
+                        <p class="text-xs text-[#6E625A] mt-1" data-i18n="ctWaSub">Rispondiamo in tempi rapidi</p>
+                        <a href="https://wa.me/393391290800" target="_blank" rel="noopener noreferrer" class="inline-block font-bold text-xs text-emerald-700 mt-2 hover:underline">+39 339 129 0800</a>
                     </div>
                 </div>
 
-                <div class="p-6 bg-[#23201E] border border-[#2A2725] flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-full bg-amber-950/60 text-luxuryGold flex items-center justify-center text-lg shrink-0 border border-luxuryGold/30">
+                <div class="p-6 bg-panel border border-line flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-orange-50 text-luxuryGold flex items-center justify-center text-lg shrink-0 border border-luxuryGold/30">
                         <i class="fa-solid fa-envelope"></i>
                     </div>
                     <div>
-                        <h4 class="font-medium text-xs text-[#EAE6E1] tracking-wider uppercase" data-i18n="ctMail">Email Assistenza</h4>
-                        <p class="text-xs text-gray-400 mt-1" data-i18n="ctMailSub">Per informazioni e ordini</p>
+                        <h4 class="font-medium text-xs text-ink tracking-wider uppercase" data-i18n="ctMail">Email Assistenza</h4>
+                        <p class="text-xs text-[#6E625A] mt-1" data-i18n="ctMailSub">Per informazioni e ordini</p>
                         <a href="mailto:alesiamarrakechescape@gmail.com" class="inline-block font-bold text-xs text-luxuryGold mt-2 hover:underline">alesiamarrakechescape@gmail.com</a>
                     </div>
                 </div>
@@ -409,21 +395,21 @@
         </section>
     </main>
 
-    <div id="toast" role="status" aria-live="polite" inert class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] bg-[#23201E] border border-luxuryGold/40 text-[#EAE6E1] text-xs px-5 py-3 opacity-0 pointer-events-none transition-opacity duration-300 shadow-xl"></div>
+    <div id="toast" role="status" aria-live="polite" inert class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] bg-panel border border-luxuryGold/40 text-ink text-xs px-5 py-3 opacity-0 pointer-events-none transition-opacity duration-300 shadow-xl"></div>
 
     <!-- FOOTER -->
-    <footer class="bg-[#121110] border-t border-[#2A2725] pt-12 pb-8 text-sm text-gray-400">
+    <footer class="bg-panel border-t border-line pt-14 pb-8 text-sm text-[#6E625A]">
         <div class="max-w-7xl mx-auto px-6 grid gap-10 md:grid-cols-3">
             <div class="space-y-3">
-                <div class="font-serif text-sm tracking-[0.3em] text-[#EAE6E1]">SOUK MARRAKECH</div>
+                <img src="./logo.png" alt="Alesia Escape Marocco" loading="lazy" class="h-28 w-auto -ml-3">
                 <p data-i18n="footBlurb" class="font-light leading-relaxed">Artigianato marocchino scelto a mano nella Medina di Marrakech.</p>
             </div>
             <div class="space-y-3">
-                <h2 data-i18n="footShipTitle" class="font-serif text-xs tracking-[0.2em] text-luxuryGold uppercase">Spedizioni</h2>
+                <h2 data-i18n="footShipTitle" class="text-xs font-medium tracking-[0.25em] text-luxuryGold uppercase">Spedizioni</h2>
                 <p data-i18n="footShipText" class="font-light leading-relaxed">Costi e tempi di spedizione da concordare direttamente con noi.</p>
             </div>
             <div class="space-y-3">
-                <h2 data-i18n="footContactTitle" class="font-serif text-xs tracking-[0.2em] text-luxuryGold uppercase">Contatti</h2>
+                <h2 data-i18n="footContactTitle" class="text-xs font-medium tracking-[0.25em] text-luxuryGold uppercase">Contatti</h2>
                 <ul class="space-y-2 font-light">
                     <li><a href="https://wa.me/393391290800" target="_blank" rel="noopener noreferrer" class="hover:text-luxuryGold transition"><i class="fa-brands fa-whatsapp w-5" aria-hidden="true"></i>+39 339 129 0800</a></li>
                     <li><a href="mailto:alesiamarrakechescape@gmail.com" class="hover:text-luxuryGold transition"><i class="fa-solid fa-envelope w-5" aria-hidden="true"></i>alesiamarrakechescape@gmail.com</a></li>
@@ -431,7 +417,7 @@
                 </ul>
             </div>
         </div>
-        <p data-i18n="rights" class="text-center text-xs tracking-[0.2em] uppercase text-gray-400 mt-10">© 2026 SOUK MARRAKECH. TUTTI I DIRITTI RISERVATI.</p>
+        <p data-i18n="rights" class="text-center text-xs tracking-[0.2em] uppercase mt-10">© 2026 ALESIA ESCAPE MAROCCO. TUTTI I DIRITTI RISERVATI.</p>
     </footer>
 
     <!-- LOGICA JAVASCRIPT INTEGRATA -->
@@ -463,7 +449,7 @@
                 specShip: "Spedizioni:",
                 specShipVal: "Costi e tempi da concordare",
                 heroTag: "LUSSO SILENZIOSO — MARRAKECH",
-                heroTitle: "Artigianato Autentico <br>& Ceramiche di Marrakech",
+                heroTitle: "Artigianato Autentico <br><em>& Ceramiche di Marrakech</em>",
                 heroDesc: "Oggetti d'arredo scultorei, ceramiche e portacandele modellati a mano nel Tadelakt tradizionale dagli artigiani della Medina.",
                 shopBtn: "ESPLORA LA COLLEZIONE",
                 featuredTag: "SELEZIONE ESCLUSIVA",
@@ -477,12 +463,12 @@
                 contactTag: "ASSISTENZA & INFORMAZIONI",
                 contactTitle: "Hai Domande o Richieste Particolari?",
                 detailsBtn: "DETTAGLI",
-                docTitle: "SOUK MARRAKECH — Artigianato Autentico Marocchino",
-                trust1: "Scelto di persona nei souk della Medina", trust2: "Spedizione assicurata in 3-5 giorni lavorativi", trust3: "Assistenza diretta su WhatsApp",
+                docTitle: "ALESIA ESCAPE MAROCCO — Artigianato Autentico Marocchino",
+                trust1: "Scelto di persona nei souk della Medina", trust3: "Assistenza diretta su WhatsApp",
                 shipNote: "Costi e tempi di spedizione da concordare su WhatsApp.",
                 footBlurb: "Artigianato marocchino scelto a mano nella Medina di Marrakech.", footShipTitle: "Spedizioni",
                 footShipText: "Costi e tempi di spedizione da concordare direttamente con noi.", footContactTitle: "Contatti",
-                rights: "© 2026 SOUK MARRAKECH. TUTTI I DIRITTI RISERVATI.",
+                rights: "© 2026 ALESIA ESCAPE MAROCCO. TUTTI I DIRITTI RISERVATI.",
                 visitDesc2: "Non lavoriamo con fornitori industriali anonimi: conosciamo gli artigiani che intrecciano le lanterne, lavorano la pelle e dipingono la ceramica a mano.",
                 igTag: "ESPERIENZE & VIAGGI", igBox: "Segui la pagina Instagram per vedere dal vivo la selezione di ogni oggetto nei souk!", igBtn: "GUARDA I RETROSCENA SU INSTAGRAM",
                 contactText: "Vuoi un prodotto su misura o desideri informazioni sui tempi di spedizione? Scrivici direttamente.",
@@ -491,7 +477,7 @@
                 cartEmpty: "Il carrello è vuoto", addShort: "AGGIUNGI", added: "Aggiunto al carrello", maxQty: "Hai raggiunto la quantità disponibile", openCart: "Apri carrello",
                 ariaMenu: "Apri il menu", ariaClose: "Chiudi", ariaCart: "Apri il carrello", remove: "Rimuovi dal carrello",
                 lblProducts: "PRODOTTI", lblShipping: "SPEDIZIONE", lblTotal: "TOTALE", redirecting: "Apertura di WhatsApp...",
-                specMat: "Materiale:", specDim: "Dimensioni:", dimAsk: "Contattaci per le misure precise",
+                specMat: "Materiale:", specDim: "Dimensioni:", dimAsk: "Contattaci per le misure precise", stockNote: "Massimo 2 pezzi per prodotto per ordine.",
                 detailHandmade: "Lavorazione artigianale", detailDecor: "Design d’arredo", detailShipping: "Spedizione in Italia",
                 phName: "NOME E COGNOME *", phEmail: "EMAIL *", phPhone: "TELEFONO *", phCity: "CITTÀ E CAP *", phAddress: "INDIRIZZO DI SPEDIZIONE COMPLETO *", phNotes: "NOTE PER IL CORRIERE (OPZIONALE)"
             },
@@ -520,7 +506,7 @@
                 specShip: "Shipping:",
                 specShipVal: "Shipping costs and delivery times to be agreed",
                 heroTag: "QUIET LUXURY — MARRAKECH",
-                heroTitle: "Authentic Crafts <br>& Marrakech Ceramics",
+                heroTitle: "Authentic Crafts <br><em>& Marrakech Ceramics</em>",
                 heroDesc: "Sculptural decor items, ceramics and candle holders shaped by hand in traditional Tadelakt by Medina artisans.",
                 shopBtn: "SHOP COLLECTION",
                 featuredTag: "CURATED SELECTION",
@@ -534,21 +520,21 @@
                 contactTag: "SUPPORT & INFO",
                 contactTitle: "Contact Us",
                 detailsBtn: "DETAILS",
-                docTitle: "SOUK MARRAKECH — Authentic Moroccan Handicrafts",
-                trust1: "Personally selected in the Medina souks", trust2: "Insured shipping in 3-5 business days", trust3: "Direct support on WhatsApp",
+                docTitle: "ALESIA ESCAPE MAROCCO — Authentic Moroccan Handicrafts",
+                trust1: "Personally selected in the Medina souks", trust3: "Direct support on WhatsApp",
                 shipNote: "Shipping costs and delivery times to be agreed on WhatsApp.",
                 footBlurb: "Moroccan handicrafts hand-picked in the Medina of Marrakech.", footShipTitle: "Shipping",
                 footShipText: "Shipping costs and delivery times to be agreed directly with us.", footContactTitle: "Contact",
-                rights: "© 2026 SOUK MARRAKECH. ALL RIGHTS RESERVED.",
+                rights: "© 2026 ALESIA ESCAPE MAROCCO. ALL RIGHTS RESERVED.",
                 visitDesc2: "We don't work with anonymous industrial suppliers: we know the artisans who weave the lanterns, work the leather and hand-paint the ceramics.",
                 igTag: "EXPERIENCES & TRAVEL", igBox: "Follow our Instagram to see how each piece is selected in the souks!", igBtn: "BEHIND THE SCENES ON INSTAGRAM",
                 contactText: "Looking for a custom piece or shipping information? Write to us directly.",
                 ctWa: "Direct WhatsApp", ctWaSub: "We reply quickly", ctMail: "Email Support", ctMailSub: "For information and orders",
-                thanksTitle: "Order received", thanksText: "Payment verified. Your order confirmation will be sent by email. For any question, message us on WhatsApp.", thanksBtn: "KEEP BROWSING",
+                thanksTitle: "Order received", thanksText: "To complete your order, send the prepared message on WhatsApp. We will get back to you to confirm the details.", thanksBtn: "KEEP BROWSING",
                 cartEmpty: "Your cart is empty", addShort: "ADD", added: "Added to cart", maxQty: "You have reached the available quantity", openCart: "Open cart",
                 ariaMenu: "Open menu", ariaClose: "Close", ariaCart: "Open cart", remove: "Remove from cart",
                 lblProducts: "PRODUCTS", lblShipping: "SHIPPING", lblTotal: "TOTAL", redirecting: "Opening WhatsApp...",
-                specMat: "Material:", specDim: "Dimensions:", dimAsk: "Contact us for exact measurements",
+                specMat: "Material:", specDim: "Dimensions:", dimAsk: "Contact us for exact measurements", stockNote: "Maximum 2 pieces per product per order.",
                 detailHandmade: "Handcrafted finish", detailDecor: "Decorative design", detailShipping: "Shipping in Italy",
                 phName: "FULL NAME *", phEmail: "EMAIL *", phPhone: "PHONE *", phCity: "CITY AND POSTCODE *", phAddress: "FULL SHIPPING ADDRESS *", phNotes: "NOTES FOR THE COURIER (OPTIONAL)"
             }
@@ -572,7 +558,7 @@
             Object.entries(ARIA).forEach(([id, k]) => document.getElementById(id).setAttribute('aria-label', t(k)));
             ['it', 'en'].forEach(l => {
                 const b = document.getElementById('lang-' + l + '-btn');
-                b.className = l === lang ? 'text-luxuryGold hover:underline px-1' : 'hover:text-luxuryGold px-1';
+                b.className = l === lang ? 'underline underline-offset-4 px-1' : 'opacity-70 hover:opacity-100 px-1';
                 b.setAttribute('aria-pressed', l === lang);
             });
             renderizzaGriglie();
@@ -588,10 +574,10 @@
                 categoria: "DECORAZIONE TADELAKT",
                 prezzo: 39.90,
                 foto: "./img_1.jpg",
-                stock: 2, // massimo 2 pezzi per prodotto nel carrello
+                stock: 2,
                 materiale: "Tadelakt (calce di Marrakech)",
-                dimensioni: "", // TODO: es. "H 18 cm × Ø 10 cm"
-                altreFoto: [], // TODO: es. ["./img_1b.jpg", "./img_1c.jpg"]
+                dimensioni: "",
+                altreFoto: [],
                 descrizione: "Un oggetto decorativo dal carattere scultoreo, pensato per creare un’atmosfera calda e raccolta. La silhouette geometrica e i piccoli trafori valorizzano il gioco di luci quando viene utilizzato con una candela. La finitura richiama la tecnica tradizionale del Tadelakt di Marrakech: ogni pezzo può presentare leggere variazioni che ne sottolineano il carattere artigianale."
             },
             {
@@ -600,10 +586,10 @@
                 categoria: "CERAMICA SCULTOREA",
                 prezzo: 59.00,
                 foto: "./img_2.jpg",
-                stock: 2, // massimo 2 pezzi per prodotto nel carrello
+                stock: 2,
                 materiale: "Tadelakt bianco",
-                dimensioni: "", // TODO: es. "H 18 cm × Ø 10 cm"
-                altreFoto: [], // TODO: es. ["./img_1b.jpg", "./img_1c.jpg"]
+                dimensioni: "",
+                altreFoto: [],
                 descrizione: "Un candeliere dalla presenza elegante e materica, in una tonalità bianca che si abbina facilmente a legno, lino e colori naturali. Il profilo ispirato all’artigianato berbero incontra un’estetica essenziale, ideale su una consolle, un tavolino o una tavola curata. La finitura artigianale può mostrare piccole differenze da un esemplare all’altro."
             },
             {
@@ -612,10 +598,10 @@
                 categoria: "ILLUMINAZIONE ARTIGIANALE",
                 prezzo: 45.50,
                 foto: "./img_3.jpg",
-                stock: 2, // massimo 2 pezzi per prodotto nel carrello
+                stock: 2,
                 materiale: "Tadelakt nero (calce)",
-                dimensioni: "", // TODO: es. "H 18 cm × Ø 10 cm"
-                altreFoto: [], // TODO: es. ["./img_1b.jpg", "./img_1c.jpg"]
+                dimensioni: "",
+                altreFoto: [],
                 descrizione: "Un elemento decorativo deciso, pensato per chi ama contrasti e tonalità profonde. La finitura nera opaca e la forma traforata d’ispirazione berbera aggiungono texture e carattere a mensole, tavolini e angoli relax. Con una candela accesa, i trafori contribuiscono a creare un’atmosfera intima. La superficie artigianale può presentare lievi irregolarità."
             },
             {
@@ -624,10 +610,10 @@
                 categoria: "CERAMICA SMALTATA",
                 prezzo: 28.00,
                 foto: "./img_4.jpg",
-                stock: 2, // massimo 2 pezzi per prodotto nel carrello
+                stock: 2,
                 materiale: "Ceramica smaltata nera",
-                dimensioni: "", // TODO: es. "H 18 cm × Ø 10 cm"
-                altreFoto: [], // TODO: es. ["./img_1b.jpg", "./img_1c.jpg"]
+                dimensioni: "",
+                altreFoto: [],
                 descrizione: "Un vaso decorativo dal profilo circolare e dal foro centrale distintivo, ideale come punto focale su una mensola o un mobile d’ingresso. La ceramica nera smaltata e la superficie lucida creano un contrasto raffinato con materiali naturali e ambienti dai toni chiari. È pensato come oggetto d’arredo scultoreo; verifica le misure prima dell’acquisto, perché non sono ancora state inserite nella scheda."
             }
         ];
@@ -642,7 +628,6 @@
         const t = k => (i18n[linguaCorrente] && i18n[linguaCorrente][k]) || i18n.it[k] || k;
         const ARIA = { 'open-drawer-btn': 'ariaMenu', 'close-drawer-btn': 'ariaClose', 'open-cart-btn': 'ariaCart', 'close-cart-btn': 'ariaClose', 'close-checkout-btn': 'ariaClose', 'close-product-modal-btn': 'ariaClose' };
 
-        // Il carrello salva solo id e quantità: nome e prezzo vengono sempre riletti dal catalogo
         function leggiCarrello() {
             try {
                 const raw = JSON.parse(localStorage.getItem('souk_carrello')) || [];
@@ -702,23 +687,23 @@
             }
 
             if (carrello.length === 0) {
-                container.innerHTML = `<p class="text-center py-12 text-xs text-gray-400 uppercase tracking-widest">${t('cartEmpty')}</p>`;
+                container.innerHTML = `<p class="text-center py-12 text-xs text-[#6E625A] uppercase tracking-widest">${t('cartEmpty')}</p>`;
                 return;
             }
 
             container.innerHTML = carrello.map(i => `
-                <div class="flex items-center gap-4 bg-[#23201E] p-3 border border-[#383330]">
-                    <button type="button" onclick="chiudiCarrello(); apriModalProdotto(${i.id})" class="shrink-0"><img src="${i.foto}" alt="${L(i,'nome')}" loading="lazy" onerror="mostraFallbackImmagine(this)" class="w-12 h-14 object-contain bg-[#EAE6E1]"></button>
+                <div class="flex items-center gap-4 bg-panel p-3 border border-line">
+                    <button type="button" onclick="chiudiCarrello(); apriModalProdotto(${i.id})" class="shrink-0"><img src="${i.foto}" alt="${L(i,'nome')}" loading="lazy" onerror="mostraFallbackImmagine(this)" class="w-12 h-14 object-contain bg-[#F4EEE7]"></button>
                     <div class="flex-grow">
-                        <h4 class="text-xs text-[#EAE6E1] font-medium tracking-wide">${L(i,'nome')}</h4>
+                        <h4 class="text-xs text-ink font-medium tracking-wide">${L(i,'nome')}</h4>
                         <div class="text-luxuryGold text-xs font-serif mt-1">€${i.prezzo.toFixed(2)}</div>
                         <div class="flex items-center gap-2 mt-2">
-                            <button onclick="modificaQuantita(${i.id}, -1)" class="w-5 h-5 bg-[#1A1817] text-gray-300 text-xs flex items-center justify-center border border-[#383330]">-</button>
-                            <span class="text-xs text-gray-300">${i.quantita}</span>
-                            <button onclick="modificaQuantita(${i.id}, 1)" class="w-5 h-5 bg-[#1A1817] text-gray-300 text-xs flex items-center justify-center border border-[#383330]">+</button>
+                            <button onclick="modificaQuantita(${i.id}, -1)" class="w-5 h-5 bg-white text-[#4A3F38] text-xs flex items-center justify-center border border-line">-</button>
+                            <span class="text-xs text-[#4A3F38]">${i.quantita}</span>
+                            <button onclick="modificaQuantita(${i.id}, 1)" class="w-5 h-5 bg-white text-[#4A3F38] text-xs flex items-center justify-center border border-line">+</button>
                         </div>
                     </div>
-                    <button aria-label="${t('remove')}" onclick="modificaQuantita(${i.id}, -${i.quantita})" class="text-gray-400 hover:text-red-400 text-xs p-1"><i class="fa-solid fa-trash-can"></i></button>
+                    <button aria-label="${t('remove')}" onclick="modificaQuantita(${i.id}, -${i.quantita})" class="text-[#6E625A] hover:text-red-600 text-xs p-1"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
             `).join('');
         }
@@ -732,7 +717,7 @@
             const mostra = n => { img.src = foto[n]; img.alt = L(p, 'nome'); document.getElementById('modal-counter').textContent = `${n + 1} / ${foto.length}`; };
             mostra(0);
             const th = document.getElementById('modal-thumbs');
-            th.innerHTML = foto.length > 1 ? foto.map((f, n) => `<button type="button" data-n="${n}" aria-label="${n + 1}" class="w-12 h-12 border border-[#1A1817]/30 bg-white/60 p-0.5"><img src="${f}" alt="" class="w-full h-full object-cover"></button>`).join('') : '';
+            th.innerHTML = foto.length > 1 ? foto.map((f, n) => `<button type="button" data-n="${n}" aria-label="${n + 1}" class="w-12 h-12 border border-ink/30 bg-white/60 p-0.5"><img src="${f}" alt="" class="w-full h-full object-cover"></button>`).join('') : '';
             th.onclick = e => { const b = e.target.closest('button'); if (b) mostra(+b.dataset.n); };
             document.getElementById('modal-product-title').textContent = L(p, 'nome');
             document.getElementById('modal-product-category').textContent = L(p, 'categoria') || "COLLEZIONE ARTIGIANALE";
@@ -760,18 +745,18 @@
         function creaCardHTML(p) {
             const nome = L(p, 'nome');
             return `
-                <article class="bg-[#23201E] border border-[#2A2725] overflow-hidden card-shadow flex flex-col justify-between p-4">
+                <article class="bg-panel border border-line overflow-hidden card-shadow flex flex-col justify-between p-4">
                     <button type="button" onclick="apriModalProdotto(${p.id})" class="text-left w-full" aria-label="${t('detailsBtn')}: ${nome}">
-                        <span class="overflow-hidden bg-[#EAE6E1] p-4 flex items-center justify-center">
+                        <span class="overflow-hidden bg-[#F4EEE7] p-4 flex items-center justify-center">
                             <img src="${p.foto}" alt="${nome}" width="400" height="400" loading="lazy" decoding="async" onerror="mostraFallbackImmagine(this)" class="w-full h-56 object-contain">
                         </span>
                         <span class="block pt-4">
                             <span class="block text-xs tracking-[0.2em] text-luxuryGold uppercase">${L(p, 'categoria') || "ARTIGIANATO"}</span>
-                            <span class="block font-cormorant text-xl text-[#EAE6E1] mt-1">${nome}</span>
-                            <span class="block text-luxuryGold font-serif text-sm mt-2">€${p.prezzo.toFixed(2)}</span>
+                            <span class="block font-cormorant text-xl text-ink mt-1">${nome}</span>
+                            <span class="block text-luxuryGold font-serif text-lg mt-2">€${p.prezzo.toFixed(2)}</span>
                         </span>
                     </button>
-                    <button type="button" onclick="aggiungiAlCarrello(${p.id})" class="mt-4 w-full bg-luxuryGold hover:bg-luxuryGoldHover text-luxuryDark py-3 text-xs tracking-[0.15em] uppercase font-semibold transition flex items-center justify-center gap-2">
+                    <button type="button" onclick="aggiungiAlCarrello(${p.id})" class="mt-4 w-full bg-luxuryGold hover:bg-luxuryGoldHover text-white py-3 text-xs tracking-[0.15em] uppercase font-semibold transition flex items-center justify-center gap-2">
                         <i class="fa-solid fa-cart-plus" aria-hidden="true"></i>${t('addShort')}
                     </button>
                 </article>`;
@@ -789,12 +774,13 @@
         }
         function aggiornaTitolo() {
             const v = vistaCorrente();
-            document.title = v === 'home' ? t('docTitle') : `${t(TITOLI[v])} — SOUK MARRAKECH`;
+            document.title = v === 'home' ? t('docTitle') : `${t(TITOLI[v])} — ALESIA ESCAPE MAROCCO`;
         }
         function naviga() {
             document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
             document.getElementById('view-' + vistaCorrente()).classList.add('active');
             aggiornaTitolo();
+            aggiornaHeader();
             const riduci = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             window.scrollTo({ top: 0, behavior: riduci ? 'auto' : 'smooth' });
         }
@@ -804,7 +790,6 @@
             cambiaLingua(l);
             inserisciSchema();
             naviga();
-            
         });
 
         const drawerMenu = document.getElementById('drawer-menu');
@@ -829,7 +814,6 @@
         };
         document.getElementById('close-checkout-btn').onclick = () => checkoutOverlay.classList.add('opacity-0', 'pointer-events-none');
 
-        // Prepara il riepilogo dell'ordine e lo apre in WhatsApp.
         function inviaOrdineWhatsApp() {
             const form = document.getElementById('checkout-form');
             if (!form.reportValidity()) return;
@@ -845,7 +829,7 @@
                 `- ${L(item, 'nome')} × ${item.quantita} — €${(item.prezzo * item.quantita).toFixed(2)}`
             );
             const messaggio = [
-                'NUOVO ORDINE — SOUK MARRAKECH', '',
+                'NUOVO ORDINE — ALESIA ESCAPE MAROCCO', '',
                 'DATI CLIENTE',
                 `Nome e cognome: ${nome}`, `Email: ${email}`,
                 `Telefono: ${telefono}`, `Città e CAP: ${citta}`,
@@ -853,19 +837,21 @@
                 note ? `Note per il corriere: ${note}` : '',
                 '', 'PRODOTTI', ...righeProdotti, '',
                 `Subtotale: €${subtotale.toFixed(2)}`,
-
                 `TOTALE: €${totale.toFixed(2)}`
             ].filter(Boolean).join('\n');
             const url = 'https://wa.me/393391290800?text=' + encodeURIComponent(messaggio);
-            // Navigazione nella stessa scheda: evita che il blocco popup impedisca l'apertura di WhatsApp.
+            
+            // Svuota il carrello e reindirizza alla pagina di ringraziamento e WhatsApp
+            carrello = [];
+            salvaCarrello();
+            document.getElementById('close-checkout-btn').click();
+            window.location.hash = '#grazie';
             window.location.assign(url);
         }
 
-        // Collega il pulsante dopo che il DOM è stato creato e rende la funzione accessibile in modo esplicito.
         window.inviaOrdineWhatsApp = inviaOrdineWhatsApp;
         document.getElementById('whatsapp-order-btn').addEventListener('click', inviaOrdineWhatsApp);
 
-        // Notifica leggera al posto dell'apertura forzata del carrello
         let toastTimer;
         function mostraToast(msg, conLink) {
             const el = document.getElementById('toast');
@@ -886,7 +872,6 @@
             el.classList.add('opacity-0', 'pointer-events-none'); el.inert = true;
         }
 
-        // Drawer e modali: inert quando chiusi, focus gestito, Esc e focus trap
         const LAYERS = {
             'drawer-menu': () => document.getElementById('close-drawer-btn').click(),
             'cart-drawer': chiudiCarrello,
@@ -917,10 +902,13 @@
             if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
             else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
         });
-        // Il menu mobile si chiude quando si sceglie una voce
         document.querySelectorAll('.drawer-nav-item').forEach(a => a.addEventListener('click', () => document.getElementById('close-drawer-btn').click()));
 
-        // Dati strutturati schema.org/Product per Google
+        function aggiornaHeader() {
+            document.getElementById('site-header').classList.toggle('solid', vistaCorrente() !== 'home' || window.scrollY > 40);
+        }
+        window.addEventListener('scroll', aggiornaHeader, { passive: true });
+
         function inserisciSchema() {
             const s = document.createElement('script');
             s.type = 'application/ld+json';
