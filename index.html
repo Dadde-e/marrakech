@@ -173,7 +173,7 @@
                 <span data-i18n="cartTotal">TOTALE ORDINE:</span>
                 <span id="cart-total-price" class="font-serif text-base text-luxuryGold">€0.00</span>
             </div>
-            <p data-i18n="shipNote" class="text-xs text-gray-400 font-light">Spedizione in Italia: €7,90. Consegna in 3-5 giorni lavorativi.</p>
+            <p data-i18n="shipNote" class="text-xs text-gray-400 font-light">Costi e tempi di spedizione da concordare su WhatsApp.</p>
             <button id="open-checkout-btn" data-i18n="checkoutBtn" class="w-full bg-luxuryGold hover:bg-luxuryGoldHover text-luxuryDark font-semibold py-3.5 px-4 text-xs tracking-[0.2em] uppercase transition">
                 PROCEDI ALLA CASSA
             </button>
@@ -249,7 +249,7 @@
                         <div id="modal-spec-dim-row" class="hidden gap-3"><span data-i18n="specDim" class="w-32 shrink-0 text-gray-400 uppercase tracking-wider">Dimensioni:</span> <span id="modal-spec-dim" class="text-gray-200"></span></div>
                         <div class="flex"><span data-i18n="specOrig" class="w-32 text-gray-400 uppercase tracking-wider">Origine:</span> <span data-i18n="specOrigVal" class="text-gray-200">Medina di Marrakech, Marocco</span></div>
                         <div class="flex"><span data-i18n="specCraft" class="w-32 text-gray-400 uppercase tracking-wider">Lavorazione:</span> <span data-i18n="specCraftVal" class="text-gray-200">100% Fatto a mano da maestri artigiani</span></div>
-                        <div class="flex"><span data-i18n="specShip" class="w-32 text-gray-400 uppercase tracking-wider">Spedizioni:</span> <span data-i18n="specShipVal" class="text-gray-200">Assicurata, €7,90 in Italia, in 3-5 giorni lavorativi</span></div>
+                        <div class="flex"><span data-i18n="specShip" class="w-32 text-gray-400 uppercase tracking-wider">Spedizioni:</span> <span data-i18n="specShipVal" class="text-gray-200">Costi e tempi da concordare</span></div>
                     </div>
 
                     <p data-i18n="uniqueNote" class="text-xs italic leading-relaxed text-gray-400 border-l-2 border-luxuryGold/50 pl-3">
@@ -420,7 +420,7 @@
             </div>
             <div class="space-y-3">
                 <h2 data-i18n="footShipTitle" class="font-serif text-xs tracking-[0.2em] text-luxuryGold uppercase">Spedizioni</h2>
-                <p data-i18n="footShipText" class="font-light leading-relaxed">Spedizione assicurata in Italia a €7,90, consegna in 3-5 giorni lavorativi.</p>
+                <p data-i18n="footShipText" class="font-light leading-relaxed">Costi e tempi di spedizione da concordare direttamente con noi.</p>
             </div>
             <div class="space-y-3">
                 <h2 data-i18n="footContactTitle" class="font-serif text-xs tracking-[0.2em] text-luxuryGold uppercase">Contatti</h2>
@@ -436,7 +436,6 @@
 
     <!-- LOGICA JAVASCRIPT INTEGRATA -->
     <script>
-        const COSTO_SPEDIZIONE = 7.90;
         // DIZIONARIO TRADUZIONI (IT / EN)
         const i18n = {
             it: {
@@ -480,7 +479,7 @@
                 detailsBtn: "DETTAGLI",
                 docTitle: "SOUK MARRAKECH — Artigianato Autentico Marocchino",
                 trust1: "Scelto di persona nei souk della Medina", trust2: "Spedizione assicurata in 3-5 giorni lavorativi", trust3: "Assistenza diretta su WhatsApp",
-                shipNote: "Spedizione in Italia: €7,90. Consegna in 3-5 giorni lavorativi.",
+                shipNote: "Costi e tempi di spedizione da concordare su WhatsApp.",
                 footBlurb: "Artigianato marocchino scelto a mano nella Medina di Marrakech.", footShipTitle: "Spedizioni",
                 footShipText: "Spedizione assicurata in Italia a €7,90, consegna in 3-5 giorni lavorativi.", footContactTitle: "Contatti",
                 rights: "© 2026 SOUK MARRAKECH. TUTTI I DIRITTI RISERVATI.",
@@ -519,7 +518,7 @@
                 specCraft: "Craftsmanship:",
                 specCraftVal: "100% Handmade by master artisans",
                 specShip: "Shipping:",
-                specShipVal: "Insured, €7.90 within Italy, 3-5 business days",
+                specShipVal: "Shipping costs and delivery times to be agreed",
                 heroTag: "QUIET LUXURY — MARRAKECH",
                 heroTitle: "Authentic Crafts <br>& Marrakech Ceramics",
                 heroDesc: "Sculptural decor items, ceramics and candle holders shaped by hand in traditional Tadelakt by Medina artisans.",
@@ -537,9 +536,9 @@
                 detailsBtn: "DETAILS",
                 docTitle: "SOUK MARRAKECH — Authentic Moroccan Handicrafts",
                 trust1: "Personally selected in the Medina souks", trust2: "Insured shipping in 3-5 business days", trust3: "Direct support on WhatsApp",
-                shipNote: "Shipping within Italy: €7.90. Delivery in 3-5 business days.",
+                shipNote: "Shipping costs and delivery times to be agreed on WhatsApp.",
                 footBlurb: "Moroccan handicrafts hand-picked in the Medina of Marrakech.", footShipTitle: "Shipping",
-                footShipText: "Insured shipping within Italy at €7.90, delivered in 3-5 business days.", footContactTitle: "Contact",
+                footShipText: "Shipping costs and delivery times to be agreed directly with us.", footContactTitle: "Contact",
                 rights: "© 2026 SOUK MARRAKECH. ALL RIGHTS RESERVED.",
                 visitDesc2: "We don't work with anonymous industrial suppliers: we know the artisans who weave the lanterns, work the leather and hand-paint the ceramics.",
                 igTag: "EXPERIENCES & TRAVEL", igBox: "Follow our Instagram to see how each piece is selected in the souks!", igBtn: "BEHIND THE SCENES ON INSTAGRAM",
@@ -688,7 +687,7 @@
 
             const totaleArticoli = carrello.reduce((sum, i) => sum + i.quantita, 0);
             const subtotale = carrello.reduce((sum, i) => sum + (i.prezzo * i.quantita), 0);
-            const totaleFinale = subtotale > 0 ? (subtotale + COSTO_SPEDIZIONE) : 0;
+            const totaleFinale = subtotale;
 
             if (totaleArticoli > 0) {
                 badge.textContent = totaleArticoli;
@@ -699,7 +698,7 @@
 
             totalEl.textContent = `€${totaleFinale.toFixed(2)}`;
             if (modalTotalEl) {
-                modalTotalEl.innerHTML = `<span>${t('lblProducts')}: €${subtotale.toFixed(2)} + ${t('lblShipping')}: €${COSTO_SPEDIZIONE.toFixed(2)}</span><span class="text-luxuryGold font-serif">${t('lblTotal')}: €${totaleFinale.toFixed(2)}</span>`;
+                modalTotalEl.innerHTML = `<span>${t('lblTotal')}: €${totaleFinale.toFixed(2)}</span>`;
             }
 
             if (carrello.length === 0) {
@@ -855,7 +854,7 @@
                 note ? `Note per il corriere: ${note}` : '',
                 '', 'PRODOTTI', ...righeProdotti, '',
                 `Subtotale: €${subtotale.toFixed(2)}`,
-                `Spedizione: €${spedizione.toFixed(2)}`,
+
                 `TOTALE: €${totale.toFixed(2)}`
             ].filter(Boolean).join('\n');
             const url = 'https://wa.me/393391290800?text=' + encodeURIComponent(messaggio);
