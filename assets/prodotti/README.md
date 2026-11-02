@@ -1,33 +1,24 @@
 # Immagini prodotti
 
-Questa cartella raccoglie le immagini dei prodotti del catalogo.
+Questa cartella raccoglie le immagini del catalogo, divise in una sottocartella per ogni prodotto.
 
-## Come organizzare ogni prodotto
+## Struttura
 
-Crea una sottocartella con un nome semplice, tutto minuscolo e senza spazi, ad esempio:
+Ogni cartella usa il nome del prodotto in minuscolo, senza spazi o caratteri speciali. Le immagini si chiamano:
 
-`assets/prodotti/tappeto-berbero/`
+- `foto-1.jpg` — immagine principale
+- `foto-2.jpg` — seconda immagine
+- `foto-3.jpg` — terza immagine
 
-Dentro inserisci le tre immagini:
+## Prodotti già organizzati
 
-- `foto-1.webp` — immagine principale
-- `foto-2.webp` — seconda immagine
-- `foto-3.webp` — terza immagine
+- `portacandele-tadelakt/`
+- `candeliere-berbero-tadelakt/`
+- `candeliere-tadelakt-nero/`
+- `vaso-scultoreo-circle/`
 
-Esempio di struttura:
+Al momento il sito dispone di una foto già presente per ciascuno di questi prodotti. Le cartelle sono pronte per aggiungere `foto-2.jpg` e `foto-3.jpg` quando saranno disponibili: non sono state create immagini finte o vuote.
 
-```text
-assets/
-└── prodotti/
-    ├── README.md
-    ├── tappeto-berbero/
-    │   ├── foto-1.webp
-    │   ├── foto-2.webp
-    │   └── foto-3.webp
-    └── lanterna-artigianale/
-        ├── foto-1.webp
-        ├── foto-2.webp
-        └── foto-3.webp
-```
+## Regola importante
 
-Quando aggiungiamo un prodotto, creiamo la sua sottocartella e carichiamo lì le foto. Per ora questa è solo l'organizzazione dei file: il catalogo del sito dovrà essere collegato a questi percorsi con una modifica separata.
+Quando aggiungiamo un prodotto, creiamo la sua cartella e carichiamo lì le sue foto. I percorsi delle immagini usate dal sito devono corrispondere ai file presenti in questa struttura.
