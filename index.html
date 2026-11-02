@@ -199,21 +199,21 @@
 
     <!-- MODALE DETTAGLIO PRODOTTO (POPUP STILE ZARIB) -->
     <div id="product-detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-product-title" class="fixed inset-0 bg-black/85 z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-2 sm:p-6">
-        <div class="bg-white border border-line max-w-5xl w-full max-h-[92vh] overflow-hidden relative flex flex-col lg:flex-row shadow-2xl">
+        <div class="bg-white border border-line max-w-5xl w-full max-h-[92dvh] overflow-hidden relative flex flex-col lg:flex-row shadow-2xl">
             <button id="close-product-modal-btn" class="absolute top-4 right-4 z-20 text-[#6E625A] hover:text-ink bg-white/80 w-8 h-8 rounded-full flex items-center justify-center border border-line transition">
                 <i class="fa-solid fa-xmark text-sm"></i>
             </button>
 
             <!-- LATO SINISTRO: IMMAGINE -->
-            <div class="lg:w-1/2 bg-[#F4EEE7] p-6 flex flex-col justify-between relative min-h-[320px] lg:min-h-[500px]">
+            <div class="lg:w-1/2 h-[250px] min-h-[250px] shrink-0 lg:h-auto lg:min-h-[500px] bg-[#F4EEE7] p-4 sm:p-6 flex flex-col justify-between relative">
                 <div class="absolute top-4 left-4 text-xs tracking-[0.2em] bg-ink/10 text-ink px-2.5 py-1 font-semibold uppercase" id="modal-counter">1 / 1</div><div id="modal-thumbs" class="absolute bottom-3 left-0 right-0 flex justify-center gap-2"></div>
                 <div class="flex-grow flex items-center justify-center p-4">
-                    <img id="modal-product-img" src="" alt="" class="max-h-[380px] max-w-full w-auto object-contain drop-shadow-md">
+                    <img id="modal-product-img" src="" alt="" class="max-h-[210px] lg:max-h-[380px] max-w-full w-auto object-contain drop-shadow-md">
                 </div>
             </div>
 
             <!-- LATO DESTRO: DETTAGLI -->
-            <div class="lg:w-1/2 p-6 sm:p-10 modal-scroll overflow-y-auto flex flex-col justify-between bg-white">
+            <div class="lg:w-1/2 flex-1 min-h-0 p-6 sm:p-10 modal-scroll overflow-y-auto flex flex-col justify-between bg-white">
                 <div class="space-y-6">
                     <span id="modal-product-category" class="text-xs tracking-[0.3em] text-luxuryGold uppercase font-semibold">
                         COLLEZIONE ARTIGIANALE
