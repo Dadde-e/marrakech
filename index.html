@@ -208,7 +208,7 @@
             <div class="lg:w-1/2 bg-[#F4EEE7] p-6 flex flex-col justify-between relative min-h-[320px] lg:min-h-[500px]">
                 <div class="absolute top-4 left-4 text-xs tracking-[0.2em] bg-ink/10 text-ink px-2.5 py-1 font-semibold uppercase" id="modal-counter">1 / 1</div><div id="modal-thumbs" class="absolute bottom-3 left-0 right-0 flex justify-center gap-2"></div>
                 <div class="flex-grow flex items-center justify-center p-4">
-                    <img id="modal-product-img" src="" alt="" class="max-h-[380px] w-auto object-contain drop-shadow-md">
+                    <img id="modal-product-img" src="" alt="" class="max-h-[380px] max-w-full w-auto object-contain drop-shadow-md">
                 </div>
             </div>
 
@@ -745,10 +745,10 @@
         function creaCardHTML(p) {
             const nome = L(p, 'nome');
             return `
-                <article class="bg-panel border border-line overflow-hidden card-shadow flex flex-col justify-between p-4">
+                <article class="bg-[#F1EAE2] border border-[#E2D5C8] overflow-hidden card-shadow flex flex-col justify-between p-4">
                     <button type="button" onclick="apriModalProdotto(${p.id})" class="text-left w-full" aria-label="${t('detailsBtn')}: ${nome}">
-                        <span class="overflow-hidden bg-[#F4EEE7] p-4 flex items-center justify-center">
-                            <img src="${p.foto}" alt="${nome}" width="400" height="400" loading="lazy" decoding="async" onerror="mostraFallbackImmagine(this)" class="w-full h-56 object-contain">
+                        <span class="block h-64 sm:h-72 overflow-hidden bg-[#EDE3D8] p-4 flex items-center justify-center">
+                            <img src="${p.foto}" alt="${nome}" width="400" height="400" loading="lazy" decoding="async" onerror="mostraFallbackImmagine(this)" class="w-full h-full object-contain">
                         </span>
                         <span class="block pt-4">
                             <span class="block text-xs tracking-[0.2em] text-luxuryGold uppercase">${L(p, 'categoria') || "ARTIGIANATO"}</span>
